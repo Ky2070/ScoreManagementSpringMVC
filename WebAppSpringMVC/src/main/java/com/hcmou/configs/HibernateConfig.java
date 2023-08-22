@@ -31,7 +31,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean getSessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setPackagesToScan(new String[]{
-            "com.nqk.pojo"
+            "com.hcmou.pojo"
         });
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());

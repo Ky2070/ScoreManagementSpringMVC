@@ -4,10 +4,15 @@
  */
 package com.hcmou.repository;
 
+import com.hcmou.pojo.Score;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author Kiet
  */
+
 public interface ScoreRepository {
-    
+    List<Score> getScores(Map<String, String> params);
 }

@@ -15,4 +15,5 @@ import java.util.Map;
 
 public interface ScoreRepository {
     List<Score> getScores(Map<String, String> params);
+    Score getScoreById(int id);
 }

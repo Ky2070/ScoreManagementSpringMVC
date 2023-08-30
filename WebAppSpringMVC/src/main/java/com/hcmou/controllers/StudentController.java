@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -24,8 +25,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-
+    
     @GetMapping("/students")
+    @CrossOrigin
     public String list(Model model) {
         List<Student> students = studentService.getStudents();
         model.addAttribute("students", students);

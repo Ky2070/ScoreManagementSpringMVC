@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author vhuunghia
  */
+
 @Repository
 @Transactional
 public class StudentRepositoryImp implements StudentRepository{

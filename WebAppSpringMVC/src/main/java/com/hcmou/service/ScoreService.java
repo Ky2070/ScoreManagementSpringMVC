@@ -6,13 +6,13 @@ package com.hcmou.service;
 
 import com.hcmou.pojo.Score;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author Kiet
  */
 public interface ScoreService {
-    List<Score> getScores(Map<String, String> params);
+    List<Score> getScores();
      Score getScoreById(int id);
+     List<Score> getScoreByStudentCode(String studentCode);
 }

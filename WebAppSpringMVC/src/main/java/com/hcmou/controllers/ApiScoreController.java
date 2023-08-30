@@ -6,6 +6,8 @@ package com.hcmou.controllers;
 
 import com.hcmou.pojo.Score;
 import com.hcmou.service.ScoreService;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,23 +28,49 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiScoreController {
 
     @Autowired
-   private ScoreService scoService;
-     
+    private ScoreService scoService;
+
     @GetMapping("/scores/")
     @CrossOrigin
-     public ResponseEntity<List<Score>> list() {
+    public ResponseEntity<List<Score>> list() {
         return new ResponseEntity<>(this.scoService.getScores(), HttpStatus.OK);
     }
-     
-   @GetMapping("/scores/{studentCode}")
+
+    @GetMapping("/scores/{studentCode}")
     @CrossOrigin
     public ResponseEntity<List<Score>> getByStudentCode(@PathVariable String studentCode) {
         List<Score> scores = this.scoService.getScoreByStudentCode(studentCode);
-        
+
         if (scores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        
+
+        return new ResponseEntity<>(scores, HttpStatus.OK);
+    }
+
+    @GetMapping("/scores/studentName")
+    @CrossOrigin
+    public ResponseEntity<List<Score>> getByStudentName(
+            @RequestParam String firstName,
+            @RequestParam String lastName
+    ) {
+        List<Score> scores = scoService.getScoreByStudentFullName(firstName, lastName);
+
+        if (scores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(scores, HttpStatus.OK);
+    }
+     @GetMapping("/scores/student/{studentCode}")
+    @CrossOrigin
+    public ResponseEntity<List<Score>> getSubjectScoresByStudentCode(@PathVariable String studentCode) {
+        List<Score> scores = scoService.getSubjectScoresByStudentCode(studentCode);
+
+        if (scores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         return new ResponseEntity<>(scores, HttpStatus.OK);
     }
 }

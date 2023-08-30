@@ -16,4 +16,6 @@ public interface ScoreRepository {
     List<Score> getScores();
     Score getScoreById(int id);
     List<Score> getScoreByStudentCode(String studentCode);
+    List<Score> getScoreByStudentFullName(String firstName, String lastName);
+    List<Score> getSubjectScoresByStudentCode(String studentCode);
 }

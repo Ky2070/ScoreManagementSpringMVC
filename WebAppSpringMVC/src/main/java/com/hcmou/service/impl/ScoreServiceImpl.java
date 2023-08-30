@@ -8,7 +8,6 @@ import com.hcmou.pojo.Score;
 import com.hcmou.repository.ScoreRepository;
 import com.hcmou.service.ScoreService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -40,6 +39,16 @@ public class ScoreServiceImpl implements ScoreService{
     @Override
     public List<Score> getScoreByStudentCode(String studentCode) {
         return this.scoreRepo.getScoreByStudentCode(studentCode);
+    }
+
+    @Override
+    public List<Score> getScoreByStudentFullName(String firstName, String lastName) {
+            return this.scoreRepo.getScoreByStudentFullName(firstName, lastName);
+    }
+
+    @Override
+    public List<Score> getSubjectScoresByStudentCode(String studentCode) {
+        return this.scoreRepo.getSubjectScoresByStudentCode(studentCode);
     }
     
 }

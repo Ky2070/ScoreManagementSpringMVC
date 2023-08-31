@@ -50,5 +50,10 @@ public class ScoreServiceImpl implements ScoreService{
     public List<Score> getSubjectScoresByStudentCode(String studentCode) {
         return this.scoreRepo.getSubjectScoresByStudentCode(studentCode);
     }
+
+    @Override
+    public List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId) {
+        return this.scoreRepo.getSubjectScoresByStudentCodeAndSchoolYear(studentCode, schoolYearId);
+    }
     
 }

@@ -62,7 +62,8 @@ public class ApiScoreController {
 
         return new ResponseEntity<>(scores, HttpStatus.OK);
     }
-     @GetMapping("/scores/student/{studentCode}")
+
+    @GetMapping("/scores/student/{studentCode}")
     @CrossOrigin
     public ResponseEntity<List<Score>> getSubjectScoresByStudentCode(@PathVariable String studentCode) {
         List<Score> scores = scoService.getSubjectScoresByStudentCode(studentCode);
@@ -73,4 +74,34 @@ public class ApiScoreController {
 
         return new ResponseEntity<>(scores, HttpStatus.OK);
     }
+
+    @GetMapping("/scores/subjectSchoolyear")
+    @CrossOrigin
+    public ResponseEntity<List<Score>> getSubjectScoresByStudentCodeAndSchoolYear(
+            @RequestParam String studentCode,
+            @RequestParam int schoolYearId
+    ) {
+        List<Score> scores = scoService.getSubjectScoresByStudentCodeAndSchoolYear(studentCode, schoolYearId);
+
+        if (scores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(scores, HttpStatus.OK);
+    }
+
+    @GetMapping("/scores/subjects/{studentCode}/{schoolYearId}")
+    @CrossOrigin
+    public ResponseEntity<List<Score>> getSubjectScoresBySchoolYear(
+            @PathVariable String studentCode,
+            @PathVariable int schoolYearId
+    ) {
+        List<Score> scores = scoService.getSubjectScoresByStudentCodeAndSchoolYear(studentCode, schoolYearId);
+
+        if (scores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(scores, HttpStatus.OK);
+    }
+
 }

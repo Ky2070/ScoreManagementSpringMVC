@@ -6,6 +6,7 @@ package com.hcmou.repository.impl;
 
 import com.hcmou.pojo.Score;
 import com.hcmou.pojo.Student;
+import com.hcmou.pojo.Studentsubjectteacher;
 import com.hcmou.pojo.Subject;
 import com.hcmou.pojo.Subjectteacher;
 import com.hcmou.repository.ScoreRepository;
@@ -100,6 +101,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
         return query.getResultList();
     }
 
+    //TEST
     @Override
     public List<Score> getSubjectScoresByStudentCode(String studentCode) {
         Session session = factory.getObject().getCurrentSession();
@@ -114,6 +116,31 @@ public class ScoreRepositoryImpl implements ScoreRepository {
         // Join với bảng SubjectTeacher để lấy thông tin môn học và giáo viên
         Join<Score, Subjectteacher> subjectTeacherJoin = scoreRoot.join("subjectTeacherID", JoinType.INNER);
         Join<Subjectteacher, Subject> subjectJoin = subjectTeacherJoin.join("subjectId", JoinType.INNER);
+
+        criteriaQuery.select(scoreRoot);
+
+        Query query = session.createQuery(criteriaQuery);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId) {
+        Session session = factory.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Score> criteriaQuery = criteriaBuilder.createQuery(Score.class);
+        Root<Score> scoreRoot = criteriaQuery.from(Score.class);
+
+        Join<Score, Student> studentJoin = scoreRoot.join("studentID", JoinType.INNER);
+        Join<Score, Subjectteacher> subjectTeacherJoin = scoreRoot.join("subjectTeacherID", JoinType.INNER);
+        Join<Subjectteacher, Studentsubjectteacher> studentsubjectJoin = subjectTeacherJoin.join("studentsubjectteacherList", JoinType.INNER);
+
+        criteriaQuery.where(
+                criteriaBuilder.and(
+                        criteriaBuilder.equal(studentJoin.get("studentCode"), studentCode),
+                        criteriaBuilder.equal(studentsubjectJoin.get("schoolYearId"), schoolYearId)
+                )
+        );
 
         criteriaQuery.select(scoreRoot);
 

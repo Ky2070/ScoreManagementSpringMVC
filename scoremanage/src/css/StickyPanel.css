@@ -1,0 +1,45 @@
+.sticky-panel {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Thay đổi flex-direction thành column */
+    align-items: center; /* Để các button căn giữa theo chiều ngang */
+    z-index: 1000;
+}
+
+.content {
+    margin-left: 15px; /* Để tránh che mất nội dung bên dưới */
+    width: 100%;
+}
+.list-function-of-teacher{
+    display: flex;
+}
+.panel-button {
+    width: 100%; /* Đặt kích thước cho button */
+    padding: 10px; /* Đặt padding cho button */
+    margin: 2px 0; /* Khoảng cách giữa các button */
+    text-decoration: none;
+    color: black;
+    border: 2px black solid;
+    text-align: center;
+}
+.panel-button:hover {
+    background-color: #ffc3ac; /* Màu nền khi hover */
+}
+.change-score{
+    color: white;
+    margin: 0 1px;
+    border: 2px black solid;
+    text-align: center;
+    background-color: rgb(255 91 91);
+}
+.function-name{
+    background-color: black;
+    padding: 7px;
+    border: 1px black solid;
+    font-size: 25px;
+    color: rgb(255 255 255);
+}

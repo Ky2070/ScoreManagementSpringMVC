@@ -6,7 +6,9 @@ package com.hcmou.service.impl;
 
 import com.hcmou.configs.WebAppContextConfig;
 import com.hcmou.pojo.Student;
+import com.hcmou.pojo.User;
 import com.hcmou.repository.StudentRepository;
+import com.hcmou.repository.UserRepository;
 import com.hcmou.service.StudentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository StudentRepository;
 
     @Override
-    public List<Student> getStudents() {
+    public List<Student> getStudents(){
         return StudentRepository.getStudents();
     }
-
 }

@@ -5,6 +5,7 @@
 package com.hcmou.service;
 
 import com.hcmou.pojo.Student;
+import com.hcmou.pojo.User;
 import java.util.List;
 import java.util.Map;
 
@@ -14,5 +15,5 @@ import java.util.Map;
  */
 public interface StudentService {
     List<Student> getStudents();
-//     Score getScoreById(int id);
+
 }

@@ -53,17 +53,9 @@ const Header = () => {
                         <Nav.Link href="#action2" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Tin tức
                         </Nav.Link>
-                        <NavDropdown title="Khoa" id="navbarScrollingDropdown" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                            <NavDropdown.Item href="#action3" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                                CNTT
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action4" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                                Quản lí hệ thống
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action5" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                                Ngôn ngữ Anh
-                            </NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link href="/listclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                            Lớp phụ trách
+                        </Nav.Link>
                         <Nav.Link as={Link} to="/login" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Đăng nhập/Đăng ký
                         </Nav.Link>

@@ -4,9 +4,8 @@
  */
 package com.hcmou.repository.impl;
 
-import com.hcmou.pojo.Student;
 import com.hcmou.pojo.User;
-import com.hcmou.repository.StudentRepository;
+import com.hcmou.repository.UserRepository;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,21 +22,22 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author vhuunghia
  */
-
 @Repository
 @Transactional
-public class StudentRepositoryImp implements StudentRepository{
+public class UserRepositoryImp implements UserRepository{
+    
     @Autowired
     private LocalSessionFactoryBean factory;
     @Autowired
     private Environment env;
     
+    
     @Override
-    public List<Student> getStudents() {
+    public  List<User> getUsers(){
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Student> q = b.createQuery(Student.class);
-        Root root = q.from(Student.class);
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
         q.select(root); 
         Query query = s.createQuery(q);
         return query.getResultList(); 

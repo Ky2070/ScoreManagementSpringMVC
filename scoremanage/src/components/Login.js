@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     MDBBtn,
     MDBContainer,
@@ -7,15 +7,55 @@ import {
     MDBIcon,
     MDBInput
 }
-
-
-
-
-
     from 'mdb-react-ui-kit';
 
 const Login = () => {
+    // const [listUser, setListUer] = useState(null);
+    // const loadUser = async () => {
+    //     try {
+    //         let res = await fetch("http://localhost:8080/WebAppSpringMVC/api/user");
+    //         if (!res.ok) {
+    //             throw new Error(`HTTP error! Status: ${res.status}`);
+    //         }
+    //         let data = await res.json();
+    //         setListUer(data);
+    //     } catch (error) {
+    //         console.error("Error loading users:", error);
+    //     }
+    // };
+
+    const handleLogin = async () => {
+        // Lấy thông tin từ các trường đăng nhập
+        const userName = document.getElementById('formControlLg').value;
+        const password = document.getElementById('passwordControlLg').value;
+        const role = document.getElementById('roleSelect').value;
+    
+        // Gửi dữ liệu đăng nhập lên server
+        try {
+            const response = await fetch("http://localhost:8080/WebAppSpringMVC/api/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userName, password, role })
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            // Xử lý dữ liệu trả về từ server sau khi đăng nhập thành công
+        } catch (error) {
+            console.error("Error logging in:", error);
+        }
+    };
+    useEffect(() => {
+        // loadUser();
+    }
+    ,[])
     return (
+
         <>
             <MDBContainer fluid>
                 <MDBRow style={{ border: '2px solid #ccc', borderRadius: '10px'}}>
@@ -40,7 +80,7 @@ const Login = () => {
                             </select>
 
 
-                            <MDBBtn className="mb-4 px-5 mx-5 w-100 shadow-none" color='info' size='lg'>Login</MDBBtn>
+                            <MDBBtn className="mb-4 px-5 mx-5 w-100 shadow-none" color='info' size='lg' onClick={handleLogin}>Login</MDBBtn>
                             <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted" href="#!">Forgot password?</a></p>
                             <p className='ms-5'>Bạn có tài khoản chưa? <a href="/register" class="link-info">Đăng ký tại đây</a></p>
 

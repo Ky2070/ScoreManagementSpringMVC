@@ -10,11 +10,14 @@ import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,22 +27,48 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImp implements UserRepository{
-    
+public class UserRepositoryImp implements UserRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
     @Autowired
     private Environment env;
-    
+//    @Autowired
+//    private BCryptPasswordEncoder passEncoder;
+
+//    @Override
+//    public List<User> getUsers() {
+//        Session s = this.factory.getObject().getCurrentSession();
+//        CriteriaBuilder b = s.getCriteriaBuilder();
+//        CriteriaQuery<User> q = b.createQuery(User.class);
+//        Root root = q.from(User.class);
+//        q.select(root); 
+//        Query query = s.createQuery(q);
+//        return query.getResultList(); 
+//
+//    }
     
     @Override
-    public  List<User> getUsers(){
+    public User getUserByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
-        CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<User> q = b.createQuery(User.class);
-        Root root = q.from(User.class);
-        q.select(root); 
-        Query query = s.createQuery(q);
-        return query.getResultList(); 
+        Query q = s.createQuery("FROM User WHERE username=:un");
+        q.setParameter("un", username);
+
+        return (User) q.getSingleResult();
     }
+
+//    @Override
+//    public boolean authUser(String username, String password) {
+//        User  u = this.getUserByUsername(username);
+//        
+//        return this.passEncoder.matches(password, u.getPassword());
+//    }
+
+//    @Override
+//    public User addUser(User u) {
+//        Session s = this.factory.getObject().getCurrentSession();
+//        s.save(u);
+//        
+//        return u;
+//    }
 }

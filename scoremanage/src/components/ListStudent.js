@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
 import '../css/StickyPanel.css'
 const ListStudent = () => {
+    
     return (<>
         <div className='list-function-of-teacher'>
             <div className="sticky-panel" id="stickyPanel"> {/* Container cho mục bao gồm các chức năng */}
@@ -14,7 +15,7 @@ const ListStudent = () => {
             </div>
 
             <div className="content">
-                <h1 style={{textAlign: "center"}}>DANH SÁCH SINH VIÊN LỚP...</h1>
+                <h1 style={{ textAlign: "center" }}>DANH SÁCH SINH VIÊN LỚP...</h1>
                 <Table striped bordered hover>
 
                     <thead>
@@ -29,6 +30,11 @@ const ListStudent = () => {
                         </tr>
                     </thead>
                     <tbody>
+                       
+
+
+
+
                         {Array.from({ length: 5 }, (_, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>

@@ -4,7 +4,6 @@
  */
 package com.hcmou.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -55,10 +54,8 @@ public class Schoolyear implements Serializable {
     @Column(name = "SemesterName")
     private String semesterName;
     @OneToMany(mappedBy = "schoolYearId")
-    @JsonIgnore
     private List<Score> scoreList;
     @OneToMany(mappedBy = "schoolYearId")
-    @JsonIgnore
     private List<Studentsubjectteacher> studentsubjectteacherList;
 
     public Schoolyear() {

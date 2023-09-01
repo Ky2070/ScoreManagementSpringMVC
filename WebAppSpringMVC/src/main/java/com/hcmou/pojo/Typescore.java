@@ -4,7 +4,6 @@
  */
 package com.hcmou.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -40,7 +39,6 @@ public class Typescore implements Serializable {
     @Column(name = "ScoreType")
     private String scoreType;
     @OneToMany(mappedBy = "scoreType")
-    @JsonIgnore
     private List<Score> scoreList;
 
     public Typescore() {

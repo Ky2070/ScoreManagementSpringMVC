@@ -4,7 +4,6 @@
  */
 package com.hcmou.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -43,7 +42,6 @@ public class Role implements Serializable {
     @Column(name = "RoleName")
     private String roleName;
     @OneToMany(mappedBy = "roleID")
-    @JsonIgnore
     private List<User> userList;
 
     public Role() {

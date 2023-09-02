@@ -4,9 +4,9 @@
  */
 package com.hcmou.service.impl;
 
-import com.hcmou.pojo.User;
-import com.hcmou.repository.UserRepository;
-import com.hcmou.service.UserService;
+import com.hcmou.pojo.Student;
+import com.hcmou.repository.StudentRepository;
+import com.hcmou.service.StudentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,14 @@ import org.springframework.stereotype.Service;
  * @author nguye
  */
 @Service
-public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepo;
+public class StudentServiceImpl implements StudentService {
+    
+     @Autowired
+    private StudentRepository studRepo;
     
     @Override
-    public List<User> getUser() {
-            
-        return this.userRepo.getUser();
-            
+    public List<Student> getStudents() {
+        return this.studRepo.getStudents();
     }
     
 }

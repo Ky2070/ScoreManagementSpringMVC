@@ -8,7 +8,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -47,16 +46,16 @@ public class Score implements Serializable {
     @Column(name = "IsLocked")
     private Boolean isLocked;
     @JoinColumn(name = "SchoolYearId", referencedColumnName = "Id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Schoolyear schoolYearId;
     @JoinColumn(name = "StudentID", referencedColumnName = "Id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Student studentID;
     @JoinColumn(name = "SubjectTeacherID", referencedColumnName = "Id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Subjectteacher subjectTeacherID;
     @JoinColumn(name = "ScoreType", referencedColumnName = "ScoreType")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Typescore scoreType;
 
     public Score() {

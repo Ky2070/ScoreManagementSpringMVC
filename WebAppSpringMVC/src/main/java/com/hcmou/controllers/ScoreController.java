@@ -35,5 +35,4 @@ public class ScoreController {
         return "scores";
     }
     
-    
 }

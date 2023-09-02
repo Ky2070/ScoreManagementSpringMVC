@@ -4,7 +4,6 @@
  */
 package com.hcmou.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -84,10 +83,8 @@ public class User implements Serializable {
     @Column(name = "Active")
     private String active;
     @OneToMany(mappedBy = "userId")
-    @JsonIgnore
     private List<Forumcomment> forumcommentList;
     @OneToMany(mappedBy = "userId")
-    @JsonIgnore
     private List<Forum> forumList;
     @JoinColumn(name = "RoleID", referencedColumnName = "Id")
     @ManyToOne

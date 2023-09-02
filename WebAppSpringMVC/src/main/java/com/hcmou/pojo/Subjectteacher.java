@@ -4,6 +4,7 @@
  */
 package com.hcmou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,12 +40,16 @@ public class Subjectteacher implements Serializable {
     @Column(name = "Id")
     private Integer id;
     @OneToMany(mappedBy = "subjectTeacherId")
+    @JsonIgnore
     private List<Forum> forumList;
     @OneToMany(mappedBy = "subjectTeacherId")
+    @JsonIgnore
     private List<Notification> notificationList;
     @OneToMany(mappedBy = "subjectTeacherID")
+    @JsonIgnore
     private List<Score> scoreList;
     @OneToMany(mappedBy = "subjectTeacherId")
+    @JsonIgnore
     private List<Studentsubjectteacher> studentsubjectteacherList;
     @JoinColumn(name = "SubjectId", referencedColumnName = "Id")
     @ManyToOne

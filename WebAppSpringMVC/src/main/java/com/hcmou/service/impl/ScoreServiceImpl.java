@@ -8,10 +8,10 @@ import com.hcmou.pojo.Score;
 import com.hcmou.repository.ScoreRepository;
 import com.hcmou.service.ScoreService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -26,13 +26,34 @@ public class ScoreServiceImpl implements ScoreService{
     
     
     @Override
-    public List<Score> getScores(Map<String, String> params) {
-        return this.scoreRepo.getScores(params);
+    @Transactional
+    public List<Score> getScores() {
+        return this.scoreRepo.getScores();
     }
 
     @Override
     public Score getScoreById(int id) {
         return this.scoreRepo.getScoreById(id);
+    }
+
+    @Override
+    public List<Score> getScoreByStudentCode(String studentCode) {
+        return this.scoreRepo.getScoreByStudentCode(studentCode);
+    }
+
+    @Override
+    public List<Score> getScoreByStudentFullName(String firstName, String lastName) {
+            return this.scoreRepo.getScoreByStudentFullName(firstName, lastName);
+    }
+
+    @Override
+    public List<Score> getSubjectScoresByStudentCode(String studentCode) {
+        return this.scoreRepo.getSubjectScoresByStudentCode(studentCode);
+    }
+
+    @Override
+    public List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId) {
+        return this.scoreRepo.getSubjectScoresByStudentCodeAndSchoolYear(studentCode, schoolYearId);
     }
     
 }

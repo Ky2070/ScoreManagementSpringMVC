@@ -6,7 +6,6 @@ package com.hcmou.repository;
 
 import com.hcmou.pojo.Score;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -14,6 +13,10 @@ import java.util.Map;
  */
 
 public interface ScoreRepository {
-    List<Score> getScores(Map<String, String> params);
+    List<Score> getScores();
     Score getScoreById(int id);
+    List<Score> getScoreByStudentCode(String studentCode);
+    List<Score> getScoreByStudentFullName(String firstName, String lastName);
+    List<Score> getSubjectScoresByStudentCode(String studentCode);
+    List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId);
 }

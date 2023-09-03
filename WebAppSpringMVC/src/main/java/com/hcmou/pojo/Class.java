@@ -124,7 +124,7 @@ public class Class implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Class[ id=" + id + " ]";
+        return "[ " + className + " ]";
     }
     
 }

@@ -188,7 +188,7 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Teacher[ id=" + id + " ]";
+        return "[" + teacherName + "]";
     }
     
 }

@@ -4,6 +4,7 @@
     Author     : nguye
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="row">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -77,30 +78,29 @@
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav">
 
-
+                     <c:url value="/" var="action"/>
                     <li class="nav-item ">
 
-                        <a class="nav-link" aria-current="page" href="#"><i class="fas fa-users"></i> Tuyển
-                            dụng</a>
+                        <a class="nav-link" aria-current="page" href="${action}"><i class="fas fa-users"></i> Trang chủ</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link" aria-current="page" href="#"> <i
-                                class="fa-solid fa-calendar-days"></i> Lịch Công Tác</a>
+                        <c:url value="/departments" var="action"/>
+                        <a class="nav-link" aria-current="page" href="${action}"> <i class="fa-solid fa-shapes"></i> Khoa-Ban</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link" href="#"><i class="fas fa-tv"></i> Cựu Học Sinh</a>
+                        <a class="nav-link" href="#"><i class="fas fa-tv"></i> Cựu Sinh Viên</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link" href="#"> <i class="far fa-envelope"></i> Liên Hệ</a>
+                        <a class="nav-link" href="#"> <i class="fa-solid fa-school"></i> Đào tạo</a>
                     </li>
 
 

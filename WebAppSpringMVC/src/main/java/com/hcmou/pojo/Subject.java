@@ -122,7 +122,7 @@ public class Subject implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Subject[ id=" + id + " ]";
+        return subjectName;
     }
     
 }

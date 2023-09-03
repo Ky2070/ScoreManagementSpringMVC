@@ -249,7 +249,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Student[ id=" + id + " ]";
+        return firstName + " " + lastName;
     }
     
 }

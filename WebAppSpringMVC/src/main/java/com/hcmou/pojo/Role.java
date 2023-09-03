@@ -100,7 +100,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Role[ id=" + id + " ]";
+        return roleName;
     }
     
 }

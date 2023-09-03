@@ -89,7 +89,7 @@ public class Typescore implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Typescore[ scoreType=" + scoreType + " ]";
+        return scoreType;
     }
     
 }

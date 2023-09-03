@@ -100,7 +100,7 @@ public class Trainingtype implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Trainingtype[ id=" + id + " ]";
+        return trainingTypeName;
     }
     
 }

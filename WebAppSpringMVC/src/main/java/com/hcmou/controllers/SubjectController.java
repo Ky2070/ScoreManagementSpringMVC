@@ -4,8 +4,8 @@
  */
 package com.hcmou.controllers;
 
-import com.hcmou.pojo.Department;
-import com.hcmou.service.DepartmentService;
+import com.hcmou.pojo.Subject;
+import com.hcmou.service.SubjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author nguye
  */
 @Controller
-public class DepartmentController {
+public class SubjectController {
     @Autowired
-    private DepartmentService departService;
+    private SubjectService subjService;
     
-    @GetMapping("/departments")
+    @GetMapping("/subjects")
     public String list(Model model) {
-        List<Department> departments = departService.getDepartments();
-        model.addAttribute("departments", departments);
-        return "department";
+        List<Subject> subjects = subjService.getSubjects();
+        model.addAttribute("subjects", subjects);
+        return "subject";
     }
 }

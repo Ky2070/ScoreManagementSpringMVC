@@ -124,7 +124,7 @@ public class Class implements Serializable {
 
     @Override
     public String toString() {
-        return "[ " + className + " ]";
+        return className;
     }
     
 }

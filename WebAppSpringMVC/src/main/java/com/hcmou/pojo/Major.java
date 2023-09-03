@@ -124,7 +124,7 @@ public class Major implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + majorName + " ]";
+        return majorName;
     }
     
 }

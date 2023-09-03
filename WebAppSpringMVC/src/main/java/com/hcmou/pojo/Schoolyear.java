@@ -148,7 +148,7 @@ public class Schoolyear implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Schoolyear[ id=" + id + " ]";
+        return nameYear + " - " + semesterName;
     }
     
 }

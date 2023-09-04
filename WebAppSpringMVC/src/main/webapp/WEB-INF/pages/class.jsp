@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Jul 13, 2023, 4:12:54 PM
-    Author     : Kiet
+    Document   : class
+    Created on : Sep 2, 2023, 4:19:51 PM
+    Author     : nguye
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -44,33 +44,27 @@
         </style>
     </head>
     <body>
-        <h1>Danh Sách Sinh Viên</h1>
+        <h1>Danh Sách Lớp</h1>
         <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Mã Sinh Viên</th>
-                <th>Họ</th>
-                <th>Tên</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <<th>Lớp</th>
+                <th>Mã Lớp</th>
+                <th>Ngành</th>
+                <th>Giáo viên chủ nhiệm</th>
                 <!-- Các cột khác -->
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${students}" var="student">
+            <c:forEach items="${classes}" var="classes">
                 <tr>
-                    <td>${student.id}</td>
-                    <td>${student.studentCode}</td>
-                    <td>${student.firstName}</td>
-                    <td>${student.lastName}</td>
-                    <td>${student.email}</td>
-                    <td>${student.phone}</td>
-                    <td>${student.classId}</td>
+                    <td>${classes.id}</td>
+                    <td>${classes.className}</td>
+                    <td>${classes.majorId}</td>
+                    <td>${classes.teacherId}</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    </body>
+   </body>
 </html>

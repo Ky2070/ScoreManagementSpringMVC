@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `class`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `class` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `ClassName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `MajorId` int DEFAULT NULL,
   `TeacherId` int DEFAULT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `class` (
   KEY `TeacherId` (`TeacherId`),
   CONSTRAINT `class_ibfk_1` FOREIGN KEY (`MajorId`) REFERENCES `major` (`Id`),
   CONSTRAINT `class_ibfk_2` FOREIGN KEY (`TeacherId`) REFERENCES `teacher` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,10 +53,10 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `DepartmentName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `forum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `forum` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Content` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `forumcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `forumcomment` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Content` varchar(3000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `CreatedAt` datetime DEFAULT NULL,
@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS `major`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `major` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `MajorName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `DepartmentId` int DEFAULT NULL,
   `TrainingTypeId` int DEFAULT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE `major` (
   KEY `TrainingTypeId` (`TrainingTypeId`),
   CONSTRAINT `major_ibfk_1` FOREIGN KEY (`DepartmentId`) REFERENCES `department` (`Id`),
   CONSTRAINT `major_ibfk_2` FOREIGN KEY (`TrainingTypeId`) REFERENCES `trainingtype` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ DROP TABLE IF EXISTS `notification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notification` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `StudentId` int DEFAULT NULL,
   `SubjectTeacherId` int DEFAULT NULL,
   `Message` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -203,10 +203,10 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `RoleName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,13 +227,13 @@ DROP TABLE IF EXISTS `schoolyear`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schoolyear` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `NameYear` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `YearStart` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `YearEnd` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `SemesterName` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +254,7 @@ DROP TABLE IF EXISTS `score`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `score` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `SubjectTeacherID` int DEFAULT NULL,
   `StudentID` int DEFAULT NULL,
   `SchoolYearId` int DEFAULT NULL,
@@ -271,7 +271,7 @@ CREATE TABLE `score` (
   CONSTRAINT `score_ibfk_2` FOREIGN KEY (`StudentID`) REFERENCES `student` (`Id`),
   CONSTRAINT `score_ibfk_3` FOREIGN KEY (`SchoolYearId`) REFERENCES `schoolyear` (`Id`),
   CONSTRAINT `score_ibfk_4` FOREIGN KEY (`ScoreType`) REFERENCES `typescore` (`ScoreType`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +292,7 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `StudentCode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `FirstName` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `LastName` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -300,7 +300,7 @@ CREATE TABLE `student` (
   `IdentifyCard` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Hometown` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Birthdate` date DEFAULT NULL,
-  `Email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Phone` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Status` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `ClassId` int DEFAULT NULL,
@@ -310,7 +310,7 @@ CREATE TABLE `student` (
   UNIQUE KEY `Phone_UNIQUE` (`Phone`),
   KEY `ClassId` (`ClassId`),
   CONSTRAINT `student_ibfk_1` FOREIGN KEY (`ClassId`) REFERENCES `class` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ DROP TABLE IF EXISTS `studentsubjectteacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `studentsubjectteacher` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `StudentId` int DEFAULT NULL,
   `SubjectTeacherId` int DEFAULT NULL,
   `SchoolYearId` int DEFAULT NULL,
@@ -342,7 +342,7 @@ CREATE TABLE `studentsubjectteacher` (
   CONSTRAINT `studentsubjectteacher_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `student` (`Id`),
   CONSTRAINT `studentsubjectteacher_ibfk_2` FOREIGN KEY (`SubjectTeacherId`) REFERENCES `subjectteacher` (`Id`),
   CONSTRAINT `studentsubjectteacher_ibfk_3` FOREIGN KEY (`SchoolYearId`) REFERENCES `schoolyear` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,12 +363,12 @@ DROP TABLE IF EXISTS `subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subject` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `SubjectName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Credits` int DEFAULT NULL,
   `NumberOfLessons` int DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,7 +389,7 @@ DROP TABLE IF EXISTS `subjectteacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subjectteacher` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `SubjectId` int DEFAULT NULL,
   `TeacherId` int DEFAULT NULL,
   PRIMARY KEY (`Id`),
@@ -397,7 +397,7 @@ CREATE TABLE `subjectteacher` (
   KEY `TeacherId` (`TeacherId`),
   CONSTRAINT `subjectteacher_ibfk_1` FOREIGN KEY (`SubjectId`) REFERENCES `subject` (`Id`),
   CONSTRAINT `subjectteacher_ibfk_2` FOREIGN KEY (`TeacherId`) REFERENCES `teacher` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -418,7 +418,7 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `teacher` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `TeacherName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Email` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `PhoneNumber` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -429,7 +429,7 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`Id`),
   KEY `DepartmentId` (`DepartmentId`),
   CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`DepartmentId`) REFERENCES `department` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -450,10 +450,10 @@ DROP TABLE IF EXISTS `trainingtype`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trainingtype` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `TrainingTypeName` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,14 +497,14 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Gender` tinyint DEFAULT NULL,
   `IdentifyCard` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Hometown` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Birthdate` date DEFAULT NULL,
   `Phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Username` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Image` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Active` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -515,7 +515,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `RoleID` (`RoleID`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`RoleID`) REFERENCES `role` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -537,4 +537,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 10:46:46
+-- Dump completed on 2023-09-04 19:33:11

@@ -4,8 +4,8 @@
  */
 package com.hcmou.repository.impl;
 
-import com.hcmou.pojo.User;
-import com.hcmou.repository.UserRepository;
+import com.hcmou.pojo.Student;
+import com.hcmou.repository.StudentRepository;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,24 +24,21 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
-    
+public class StudentRepositoryImpl implements StudentRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
-            
+    @Autowired
+    private Environment env;
     @Override
-    public List<User> getUser() {
-        Session s = this.factory.getObject().getCurrentSession();
+    public List<Student> getStudents() {
+        
+       Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<User> cq = b.createQuery(User.class);
-        Root rU = cq.from(User.class);
-        
-        cq.select(rU);
-        
-        Query query = s.createQuery(cq);
-
-        return query.getResultList();
-
+        CriteriaQuery<Student> q = b.createQuery(Student.class);
+        Root root = q.from(Student.class);
+        q.select(root); 
+        Query query = s.createQuery(q);
+        return query.getResultList(); 
     }
     
 }

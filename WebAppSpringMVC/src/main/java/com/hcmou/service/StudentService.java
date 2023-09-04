@@ -3,14 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.hcmou.service;
-
-import com.hcmou.pojo.User;
+import com.hcmou.pojo.Student;
 import java.util.List;
 
 /**
  *
  * @author nguye
  */
-public interface UserService {
-    List<User> getUser();
+public interface StudentService {
+    List<Student> getStudents();
 }

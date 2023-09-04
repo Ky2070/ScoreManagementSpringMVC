@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Jul 13, 2023, 4:12:54 PM
-    Author     : Kiet
+    Document   : department
+    Created on : Sep 3, 2023, 10:39:03 AM
+    Author     : nguye
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -44,33 +44,25 @@
         </style>
     </head>
     <body>
-        <h1>Danh Sách Sinh Viên</h1>
+        <c:url value="/departments" var="action"/>
+        <h1>Danh Sách Khoa</h1>
         <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Mã Sinh Viên</th>
-                <th>Họ</th>
-                <th>Tên</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <<th>Lớp</th>
+                <th>Tên Khoa</th>
                 <!-- Các cột khác -->
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${students}" var="student">
+            <c:forEach items="${departments}" var="departments">
                 <tr>
-                    <td>${student.id}</td>
-                    <td>${student.studentCode}</td>
-                    <td>${student.firstName}</td>
-                    <td>${student.lastName}</td>
-                    <td>${student.email}</td>
-                    <td>${student.phone}</td>
-                    <td>${student.classId}</td>
+                    <td>${departments.id}</td>
+                    <td>${departments.departmentName}</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    </body>
+   </body>
 </html>
+

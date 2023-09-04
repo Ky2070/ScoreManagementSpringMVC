@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,6 +41,7 @@ public class Class implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     @Size(max = 255)
@@ -124,7 +127,7 @@ public class Class implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Class[ id=" + id + " ]";
+        return className;
     }
-    
+
 }

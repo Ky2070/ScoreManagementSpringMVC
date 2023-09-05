@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     MDBBtn,
     MDBContainer,
@@ -8,57 +8,75 @@ import {
     MDBInput
 }
     from 'mdb-react-ui-kit';
-
+import { Alert, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
+import Apis, { authApi, endpoints } from '../configs/Apis';
+import cookie from "react-cookies";
+import { MyUserContext } from "../App";
+import { Navigate } from 'react-router-dom';
 const Login = () => {
-    // const [listUser, setListUer] = useState(null);
-    // const loadUser = async () => {
-    //     try {
-    //         let res = await fetch("http://localhost:8080/WebAppSpringMVC/api/user");
-    //         if (!res.ok) {
-    //             throw new Error(`HTTP error! Status: ${res.status}`);
-    //         }
-    //         let data = await res.json();
-    //         setListUer(data);
-    //     } catch (error) {
-    //         console.error("Error loading users:", error);
-    //     }
+
+    const [user, dispatch] = useContext(MyUserContext);
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        roleID: '3',
+    });
+    const [error, setError] = useState(null);
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // const handleRoleChange = (event) => {
+    //     const value = event.target.value;
+    //     setFormData({ ...formData, roleID: value });
+    //     console.log(formData);
     // };
 
-    const handleLogin = async () => {
-        // Lấy thông tin từ các trường đăng nhập
-        const userName = document.getElementById('formControlLg').value;
-        const password = document.getElementById('passwordControlLg').value;
-        const role = document.getElementById('roleSelect').value;
-    
-        // Gửi dữ liệu đăng nhập lên server
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        console.log(formData);
+
         try {
-            const response = await fetch("http://localhost:8080/WebAppSpringMVC/api/login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userName, password, role })
+            const requestBody = {
+                username: formData.username,
+                password: formData.password,
+                roleID: formData.roleID,
+            };
+            const response = await Apis.post(endpoints['login'], requestBody);
+            cookie.save("token",response.data);
+            let {data} = await  authApi().get(endpoints["current-user"]);
+            cookie.save("user", data);
+            dispatch({
+                "type": "login",
+                "payload": data
             });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+            if (response.status == 200) {
+                console.log(response.data); // Log phản hồi từ máy chủ
             }
-    
-            const data = await response.json();
-            // Xử lý dữ liệu trả về từ server sau khi đăng nhập thành công
+
+
         } catch (error) {
-            console.error("Error logging in:", error);
+            if (error.response.status === 401) {
+                const errorData = error.response.data;
+
+                setError(errorData);
+
+            } else {
+                console.error('Lỗi không xác định:', error);
+            }
         }
     };
-    useEffect(() => {
-        // loadUser();
-    }
-    ,[])
+
+    if (user != null)
+        return <Navigate to="/" />
+
     return (
 
         <>
             <MDBContainer fluid>
-                <MDBRow style={{ border: '2px solid #ccc', borderRadius: '10px'}}>
+                <MDBRow style={{ border: '2px solid #ccc', borderRadius: '10px' }}>
 
                     <MDBCol sm='6'>
 
@@ -67,20 +85,50 @@ const Login = () => {
                             <span className="h1 fw-bold mb-0">Đăng nhập</span>
                         </div>
 
-                        <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4'>
+                        <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-4' style={{ marginLeft: '58px' }}>
 
-                            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='UserName/Email' id='formControlLg' type='text' size="lg" />
-                            <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg" />
+                            <Form onSubmit={handleLogin}>
+                                <Form.Group className='mb-4'>
+                                    <Form.Label>UserName/Email</Form.Label>
+                                    <Form.Control
+                                        type='text'
+                                        size='lg'
+                                        name='username'
+                                        value={formData.username}
+                                        onChange={handleInputChange}
+                                    />
+                                </Form.Group>
 
-                            <label htmlFor='roleSelect' className='form-label ms-5'>Chọn vai trò:</label>
-                            <select className='form-select mb-4 mx-5 w-100' id='roleSelect'>
-                                <option value='student'>Học sinh</option>
-                                <option value='teacher'>Giáo viên</option>
-                                <option value='staff'>Admin</option>
-                            </select>
+                                <Form.Group className='mb-4'>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        type='password'
+                                        size='lg'
+                                        name='password'
+                                        value={formData.password}
+                                        onChange={handleInputChange}
+                                    />
+                                </Form.Group>
 
+                                <Form.Group className='mb-4'>
+                                    <Form.Label>Chọn vai trò:</Form.Label>
+                                    <Form.Select
+                                        size='lg'
+                                        name='roleID'
+                                        value={formData.roleID}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value='3'>Học sinh</option>
+                                        <option value='2'>Giáo viên</option>
+                                        <option value='1'>Admin</option>
+                                    </Form.Select>
+                                </Form.Group>
 
-                            <MDBBtn className="mb-4 px-5 mx-5 w-100 shadow-none" color='info' size='lg' onClick={handleLogin}>Login</MDBBtn>
+                                <Button className='mb-4 w-100' variant='info' size='lg' type='submit'>
+                                    Login
+                                </Button>
+                            </Form>
+                            {error && <Alert variant='danger'>{error}</Alert>}
                             <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted" href="#!">Forgot password?</a></p>
                             <p className='ms-5'>Bạn có tài khoản chưa? <a href="/register" class="link-info">Đăng ký tại đây</a></p>
 
@@ -90,7 +138,7 @@ const Login = () => {
 
                     <MDBCol sm='6' className='d-none d-sm-block px-0'>
                         <img src="https://i.pinimg.com/originals/b2/85/6c/b2856c048d12e7c93741c53e85ec8df5.jpg"
-                            alt="Login image" className="w-100" style={{ objectFit: 'cover', objectPosition: 'left', height: "700px",  padding: '47px 47px 47px 0'}} />
+                            alt="Login image" className="w-100" style={{ objectFit: 'cover', objectPosition: 'left', height: "700px", padding: '47px 47px 47px 0' }} />
                     </MDBCol>
 
                 </MDBRow>

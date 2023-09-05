@@ -28,25 +28,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtService {
 
-    public static final String SECRET_KEY = "222222222222222";
+    public static final String SECRET_KEY = "11111111111111111111111111111111";
     public static final byte[] SHARED_SECRET_KEY = SECRET_KEY.getBytes();
     public static final int EXPIRE_TIME = 86400000;
 
-    public String generateTokenLogin(String username) {
+    public String generateTokenLogin(String username, String roleName ) {
         String token = null;
         try {
             JWSSigner signer = new MACSigner(SHARED_SECRET_KEY);
-            
+
             JWTClaimsSet.Builder builder = new JWTClaimsSet.Builder();
             builder.claim("username", username);
-            
+            builder.claim("roleName", roleName);
             builder.expirationTime(new Date(System.currentTimeMillis() + EXPIRE_TIME));
-            
+
             JWTClaimsSet claimsSet = builder.build();
             SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claimsSet);
-            
+
             signedJWT.sign(signer);
             token = signedJWT.serialize();
+
+            // In ra token để kiểm tra
+            System.out.println("Generated token: " + token);
         } catch (JOSEException e) {
             System.out.println(e.getMessage());
         }
@@ -66,7 +69,7 @@ public class JwtService {
         }
         return claims;
     }
-    
+
     private Date getExpirationDateFromToken(String token) {
         JWTClaimsSet claims = getClaimsFromToken(token);
         Date expiration = claims.getExpirationTime();
@@ -94,7 +97,19 @@ public class JwtService {
             return false;
         }
         String username = getUsernameFromToken(token);
-        
+
         return !(username == null || username.isEmpty() || isTokenExpired(token));
     }
+
+    public String getRoleNameFromToken(String token) {
+        String roleName = null;
+        try {
+            JWTClaimsSet claims = getClaimsFromToken(token);
+            roleName = claims.getStringClaim("roleName"); // Sử dụng tên claim tương ứng trong token
+        } catch (ParseException e) {
+            System.err.println(e.getMessage());
+        }
+        return roleName;
+    }
+
 }

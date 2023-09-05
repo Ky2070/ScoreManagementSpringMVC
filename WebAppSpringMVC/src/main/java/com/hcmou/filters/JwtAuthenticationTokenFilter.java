@@ -9,6 +9,7 @@ package com.hcmou.filters;
  * @author vhuunghia
  */
 import com.hcmou.components.JwtService;
+import com.hcmou.controllers.ApiUserController;
 import com.hcmou.pojo.User;
 import com.hcmou.service.UserService;
 import java.io.IOException;
@@ -35,7 +36,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
  */
 public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final static String TOKEN_HEADER = "authorization";
+    private final static String TOKEN_HEADER = "Authorization";
     @Autowired
     private JwtService jwtService;
     @Autowired
@@ -54,10 +55,11 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
                 boolean accountNonExpired = true;
                 boolean credentialsNonExpired = true;
                 boolean accountNonLocked = true;
-                
+
                 Set<GrantedAuthority> authorities = new HashSet<>();
-                authorities.add(new SimpleGrantedAuthority(user.getRoleID().getRoleName()));
-                
+                User authenticatedUser = userService.getUserByUn(user.getUsername());
+                authorities.add(new SimpleGrantedAuthority(authenticatedUser.getRoleID().getRoleName()));
+
                 UserDetails userDetail = new org.springframework.security.core.userdetails.User(username, user.getPassword(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked, authorities);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail,

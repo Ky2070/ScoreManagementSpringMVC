@@ -7,7 +7,17 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import ExampleCarouselImage from "../components/ExampleCarouselImage";
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { MyUserContext } from '../App';
 const Header = () => {
+
+    const [user, dispatch] = useContext(MyUserContext);
+    const logout = () => {
+        dispatch({
+            "type": "logout"
+        })
+    }
+
     return (<>
         <Carousel>
             <Carousel.Item>
@@ -50,15 +60,24 @@ const Header = () => {
                         <Nav.Link href="#action1" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Trang chủ
                         </Nav.Link>
-                        <Nav.Link href="#action2" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                            Tin tức
+                        <Nav.Link href="/schoolyear" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                            Học kì
                         </Nav.Link>
                         <Nav.Link href="/listclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Lớp phụ trách
                         </Nav.Link>
+                        {user === null ? <>
                         <Nav.Link as={Link} to="/login" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Đăng nhập/Đăng ký
                         </Nav.Link>
+                        </>:<>
+                        <img src={user.image} alt={user.name} style={{ width: '50px', height: '50px', borderRadius: '50%', marginLeft: "160px" }} />
+                        <Nav.Link as={Link} to="/" style={{ fontSize: '1.2rem', fontWeight: 600, color: "#dd3f3f" }}>
+                            Chào {user.name}!
+                        </Nav.Link>
+                        <Button variant="secondary" onClick={logout} >Đăng xuất</Button>
+                        </>}
+
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control

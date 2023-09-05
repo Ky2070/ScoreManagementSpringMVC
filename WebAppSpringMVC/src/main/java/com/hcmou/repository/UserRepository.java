@@ -4,6 +4,7 @@
  */
 package com.hcmou.repository;
 
+import com.hcmou.pojo.Student;
 import com.hcmou.pojo.User;
 import java.util.List;
 
@@ -17,7 +18,9 @@ public interface UserRepository {
 
     User getUserByUsername(String username);
 
-//    boolean authUser(String username, String password);
+    boolean authUser(String username, String password);
 
-//    User addUser(User user);
+    User addUser(User user);
+    boolean findEmail(String email);
+    List<Student> getStudentbyEmail(String email);
 }

@@ -8,6 +8,8 @@ package com.hcmou.configs;
  *
  * @author vhuunghia
  */
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -78,18 +80,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
-//    @Bean
-//    public Cloudinary cloudinary() {
-//        Cloudinary cloudinary
-//                = new Cloudinary(ObjectUtils.asMap(
-//                        "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
-//                        "api_key", this.env.getProperty("cloudinary.api_id"),
-//                        "api_secret", this.env.getProperty("cloudinary.api_secret"),
-//                        "secure", true));
-//        return cloudinary;
-//    }
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dup9wlfhh",
+                "api_key", "765423634639927",
+                "api_secret", "ziSI1aBDOGpEkuEeVTC2mc5CKXM",
+                "secure", true));
+        return cloudinary;
+    }
+
     @Bean
     public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd");
     }
 }
+

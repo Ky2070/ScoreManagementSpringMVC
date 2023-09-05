@@ -4,11 +4,14 @@
  */
 package com.hcmou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,12 +41,14 @@ public class Class implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     @Size(max = 255)
     @Column(name = "ClassName")
     private String className;
     @OneToMany(mappedBy = "classId")
+    @JsonIgnore
     private List<Student> studentList;
     @JoinColumn(name = "MajorId", referencedColumnName = "Id")
     @ManyToOne
@@ -122,7 +127,7 @@ public class Class implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Class[ id=" + id + " ]";
+        return className;
     }
-    
+
 }

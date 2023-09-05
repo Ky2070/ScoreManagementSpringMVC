@@ -8,6 +8,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,6 +39,7 @@ public class Score implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -46,16 +50,16 @@ public class Score implements Serializable {
     @Column(name = "IsLocked")
     private Boolean isLocked;
     @JoinColumn(name = "SchoolYearId", referencedColumnName = "Id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Schoolyear schoolYearId;
     @JoinColumn(name = "StudentID", referencedColumnName = "Id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Student studentID;
     @JoinColumn(name = "SubjectTeacherID", referencedColumnName = "Id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Subjectteacher subjectTeacherID;
     @JoinColumn(name = "ScoreType", referencedColumnName = "ScoreType")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Typescore scoreType;
 
     public Score() {

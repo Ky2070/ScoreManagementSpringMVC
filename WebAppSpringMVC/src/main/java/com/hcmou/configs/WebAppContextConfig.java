@@ -46,6 +46,7 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         resolver.setSuffix(".jsp");
         return resolver;
     }
+
     
     @Bean
     public MessageSource messageSource() {

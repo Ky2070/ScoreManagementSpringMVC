@@ -4,11 +4,14 @@
  */
 package com.hcmou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,6 +42,7 @@ public class Typescore implements Serializable {
     @Column(name = "ScoreType")
     private String scoreType;
     @OneToMany(mappedBy = "scoreType")
+    @JsonIgnore
     private List<Score> scoreList;
 
     public Typescore() {
@@ -87,7 +91,7 @@ public class Typescore implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Typescore[ scoreType=" + scoreType + " ]";
+        return scoreType;
     }
     
 }

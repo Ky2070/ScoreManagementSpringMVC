@@ -19,9 +19,26 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/layout/footer.jsp" />
     </definition>
     <definition name="index" extends="baseLayout">
-        <put-attribute name="title" value="Trang chủ" />
+        <put-attribute name="title" value="Hệ thống quản lý điểm" />
         <put-attribute name="content"
-                       value="/WEB-INF/welcome.jsp" />
+                       value="/WEB-INF/pages/index.jsp" />
+    </definition>
+    <definition name="class" extends="baseLayout">
+        <put-attribute name="title" value="Hệ thống quản lý điểm" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/class.jsp" />
+    </definition>
+    
+      <definition name="department" extends="baseLayout">
+        <put-attribute name="title" value="Hệ thống quản lý điểm" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/department.jsp" />
+    </definition>
+      <definition name="subject" extends="baseLayout">
+        <put-attribute name="title" value="Hệ thống quản lý điểm" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/subject.jsp" />
+
     </definition>
 </tiles-definitions>
 

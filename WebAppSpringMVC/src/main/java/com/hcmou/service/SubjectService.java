@@ -4,16 +4,13 @@
  */
 package com.hcmou.service;
 
-import com.hcmou.pojo.Student;
-import com.hcmou.pojo.User;
+import com.hcmou.pojo.Subject;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
- * @author Kiet
+ * @author nguye
  */
-public interface StudentService {
-    List<Student> getStudents();
-
+public interface SubjectService {
+     List<Subject> getSubjects();
 }

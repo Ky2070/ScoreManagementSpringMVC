@@ -4,11 +4,14 @@
  */
 package com.hcmou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,12 +39,14 @@ public class Trainingtype implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     @Size(max = 125)
     @Column(name = "TrainingTypeName")
     private String trainingTypeName;
     @OneToMany(mappedBy = "trainingTypeId")
+    @JsonIgnore
     private List<Major> majorList;
 
     public Trainingtype() {
@@ -98,7 +103,7 @@ public class Trainingtype implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Trainingtype[ id=" + id + " ]";
+        return trainingTypeName;
     }
     
 }

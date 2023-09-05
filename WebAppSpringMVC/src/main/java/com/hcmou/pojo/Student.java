@@ -4,12 +4,15 @@
  */
 package com.hcmou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -51,6 +54,7 @@ public class Student implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     @Size(max = 50)
@@ -91,10 +95,13 @@ public class Student implements Serializable {
     @ManyToOne
     private Class classId;
     @OneToMany(mappedBy = "studentId")
+    @JsonIgnore
     private List<Notification> notificationList;
     @OneToMany(mappedBy = "studentID")
+    @JsonIgnore
     private List<Score> scoreList;
     @OneToMany(mappedBy = "studentId")
+    @JsonIgnore
     private List<Studentsubjectteacher> studentsubjectteacherList;
 
     public Student() {
@@ -249,7 +256,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Student[ id=" + id + " ]";
+        return firstName + " " + lastName;
     }
 
 }

@@ -4,13 +4,10 @@
  */
 package com.hcmou.controllers;
 
-import com.hcmou.configs.WebAppContextConfig;
-import com.hcmou.pojo.Student;
-import com.hcmou.service.StudentService;
+import com.hcmou.pojo.Class;
+import com.hcmou.service.ClassService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,19 +15,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author vhuunghia
+ * @author nguye
  */
 @Controller
-public class StudentController {
-
+public class ClassController {
     @Autowired
-    private StudentService studentService;
+    private ClassService classServ;
     
-    @GetMapping("/students")
-    @CrossOrigin
+    @GetMapping("/classes")
     public String list(Model model) {
-        List<Student> students = studentService.getStudents();
-        model.addAttribute("students", students);
-        return "index";
+        List<Class> classes = classServ.getClasses();
+        model.addAttribute("classes", classes);
+        return "class";
     }
 }

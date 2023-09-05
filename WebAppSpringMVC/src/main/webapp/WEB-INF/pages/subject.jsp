@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Jul 13, 2023, 4:12:54 PM
-    Author     : Kiet
+    Document   : subject
+    Created on : Sep 3, 2023, 10:39:12 AM
+    Author     : nguye
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -45,33 +44,28 @@
         </style>
     </head>
     <body>
-        <h1>Danh Sách Sinh Viên</h1>
+        <h1>Danh Sách Môn Học</h1>
         <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Mã Sinh Viên</th>
-                <th>Họ</th>
-                <th>Tên</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <<th>Lớp</th>
+                <th>Tên môn học</th>
+                <th>Tín chỉ</th>
+                <th>Số tiết học</th>
                 <!-- Các cột khác -->
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${students}" var="student">
+            <c:forEach items="${subjects}" var="subjects">
                 <tr>
-                    <td>${student.id}</td>
-                    <td>${student.studentCode}</td>
-                    <td>${student.firstName}</td>
-                    <td>${student.lastName}</td>
-                    <td>${student.email}</td>
-                    <td>${student.phone}</td>
-                    <td>${student.classId}</td>
+                    <td>${subjects.id}</td>
+                    <td>${subjects.subjectName}</td>
+                    <td>${subjects.credits}</td>
+                    <td>${subjects.numberOfLessons}</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    </body>
+   </body>
 </html>
+

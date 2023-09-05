@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import '../css/StickyPanel.css'
+import { Link } from 'react-router-dom';
 
 const ScoreTable = () => {
     const [columns, setColumns] = useState(2); // Số cột điểm mặc định là 2 (giữa kì và cuối kì)
@@ -41,9 +42,9 @@ const ScoreTable = () => {
             <div className="sticky-panel" id="stickyPanel"> {/* Container cho mục bao gồm các chức năng */}
                 <h1 className="function-name">CHỨC NĂNG</h1>
                 {/* Các chức năng */}
-                <a className="panel-button" href="/liststudent">Xem danh sách sinh viên</a>
-                <a className="panel-button" href="/listscore">Chỉnh sửa điểm</a>
-                <a className="panel-button" href="#">Xuất bảng điểm</a>
+                <Link className="panel-button" as={Link} to="/liststudent">Xem danh sách sinh viên</Link>
+                <Link className="panel-button" as={Link} to="/listscore">Chỉnh sửa điểm</Link>
+                <Link className="panel-button" href="#">Xuất bảng điểm</Link>
             </div>
             <div className='content'>
                 <Button className="change-score" onClick={handleAddColumn} disabled={columns >= 5}>

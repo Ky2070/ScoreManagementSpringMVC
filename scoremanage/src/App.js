@@ -14,7 +14,7 @@ import ListStudent from "./components/ListStudent";
 import MyUserReducer from "./reducers/MyUserReducer";
 import cookie from "react-cookies";
 import SchoolYear from "./components/SchoolYear";
-
+import { SchoolYearProvider } from './reducers/SchoolYearContext';
 export const MyUserContext = createContext();
 
 
@@ -22,6 +22,7 @@ const App = () => {
   const [user, dispatch] = useReducer(MyUserReducer, cookie.load("user") || null);
   return (<>
     <MyUserContext.Provider value={[user, dispatch]}>
+    <SchoolYearProvider>
       <BrowserRouter>
         <Header className="header" />
         <Routes className="routes">
@@ -35,6 +36,7 @@ const App = () => {
         </Routes>
         <Footer className="footer" />
       </BrowserRouter>
+      </SchoolYearProvider>
     </MyUserContext.Provider>
   </>)
 }

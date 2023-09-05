@@ -1,9 +1,8 @@
 <%-- 
-    Document   : base.jsp
-    Created on : Sep 2, 2023, 3:00:50 PM
-    Author     : nguye
+    Document   : base
+    Created on : Aug 24, 2023, 2:33:53 PM
+    Author     : vhuunghia
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>

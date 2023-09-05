@@ -57,11 +57,11 @@ public class Schoolyear implements Serializable {
     @Size(max = 55)
     @Column(name = "SemesterName")
     private String semesterName;
-    @OneToMany(mappedBy = "schoolYearId")
     @JsonIgnore
+    @OneToMany(mappedBy = "schoolYearId")
     private List<Score> scoreList;
-    @OneToMany(mappedBy = "schoolYearId")
     @JsonIgnore
+    @OneToMany(mappedBy = "schoolYearId")
     private List<Studentsubjectteacher> studentsubjectteacherList;
 
     public Schoolyear() {

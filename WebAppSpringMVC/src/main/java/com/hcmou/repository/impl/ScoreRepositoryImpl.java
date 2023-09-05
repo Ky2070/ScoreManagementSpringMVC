@@ -4,12 +4,14 @@
  */
 package com.hcmou.repository.impl;
 
+
 import com.hcmou.pojo.Score;
 import com.hcmou.pojo.Student;
 import com.hcmou.pojo.Studentsubjectteacher;
 import com.hcmou.pojo.Subject;
 import com.hcmou.pojo.Subjectteacher;
 import com.hcmou.repository.ScoreRepository;
+
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -25,12 +27,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Kiet
+ * @author vhuunghia
  */
-//Tầng này để thực hiện những truy vấn ORM và để cho tầng Service kết nối
-//Lưu ý gắn annotation @Repository và @Transactional
-@Transactional
+
 @Repository
+@Transactional
 public class ScoreRepositoryImpl implements ScoreRepository {
 
     @Autowired

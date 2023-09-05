@@ -4,13 +4,11 @@
  */
 package com.hcmou.repository.impl;
 
-import com.hcmou.pojo.Student;
-import com.hcmou.repository.StudentRepository;
+import com.hcmou.pojo.Schoolyear;
+import com.hcmou.pojo.User;
+import com.hcmou.repository.SchoolYearRepository;
 import java.util.List;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -20,25 +18,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author nguye
+ * @author vhuunghia
  */
 @Repository
 @Transactional
-public class StudentRepositoryImpl implements StudentRepository {
+public class SchoolYearRepositoryImp implements SchoolYearRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
     @Autowired
     private Environment env;
+
     @Override
-    public List<Student> getStudents() {
-        
-       Session s = this.factory.getObject().getCurrentSession();
-        CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Student> q = b.createQuery(Student.class);
-        Root root = q.from(Student.class);
-        q.select(root); 
-        Query query = s.createQuery(q);
-        return query.getResultList(); 
+    public List<Schoolyear> getListSchoolYear(String currentYear) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("FROM Schoolyear WHERE NameYear = :currentYear");
+        q.setParameter("currentYear", currentYear);
+        List<Schoolyear> schoolYears = q.getResultList();
+        return schoolYears;
     }
-    
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class IndexController {
+
     
      @Autowired
     private TrainingTypeService trainService;
@@ -37,5 +38,6 @@ public class IndexController {
         model.addAttribute("trainingTypes", trainingTypes);
         model.addAttribute("departments", departments);
         return "baseLayout";
+
     }
 }

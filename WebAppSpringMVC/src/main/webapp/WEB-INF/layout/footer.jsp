@@ -1,7 +1,9 @@
 <%-- 
+
     Document   : footer.jsp
     Created on : Sep 2, 2023, 3:00:58 PM
     Author     : nguye
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

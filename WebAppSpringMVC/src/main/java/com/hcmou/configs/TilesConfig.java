@@ -12,10 +12,11 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 
 /**
  *
- * @author nguye
+ * @author vhuunghia
  */
 @Configuration
 public class TilesConfig {
+
     @Bean
     public UrlBasedViewResolver viewResolver() {
         UrlBasedViewResolver viewResolver

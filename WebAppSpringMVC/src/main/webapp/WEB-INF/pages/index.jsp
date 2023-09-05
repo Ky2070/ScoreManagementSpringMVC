@@ -3,6 +3,7 @@
     Created on : Jul 13, 2023, 4:12:54 PM
     Author     : Kiet
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

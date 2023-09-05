@@ -1,0 +1,11 @@
+.header {
+  margin-bottom: 20px; /* Áp dụng margin cho Header */
+}
+
+.routes {
+  margin: 20px 0; /* Áp dụng margin cho Routes */
+}
+
+.footer {
+  margin-top: 20px; /* Áp dụng margin cho Footer */
+}

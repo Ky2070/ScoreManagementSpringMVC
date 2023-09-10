@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: scoredb
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `class`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `class` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `ClassName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `MajorId` int DEFAULT NULL,
-  `TeacherId` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ClassName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `MajorId` int(11) DEFAULT NULL,
+  `TeacherId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `MajorId` (`MajorId`),
   KEY `TeacherId` (`TeacherId`),
@@ -53,8 +53,8 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `DepartmentName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `DepartmentName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,13 +77,13 @@ DROP TABLE IF EXISTS `forum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `forum` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `Title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Content` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Content` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `CreatedAt` datetime DEFAULT NULL,
-  `SubjectTeacherId` int DEFAULT NULL,
-  `UserId` int DEFAULT NULL,
+  `SubjectTeacherId` int(11) DEFAULT NULL,
+  `UserId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `SubjectTeacherId` (`SubjectTeacherId`),
   KEY `UserId` (`UserId`),
@@ -109,13 +109,13 @@ DROP TABLE IF EXISTS `forumcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `forumcomment` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `Title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Content` varchar(3000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Content` varchar(3000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `CreatedAt` datetime DEFAULT NULL,
-  `ForumId` int DEFAULT NULL,
-  `UserId` int DEFAULT NULL,
-  `ParentCommentId` int DEFAULT NULL,
+  `ForumId` int(11) DEFAULT NULL,
+  `UserId` int(11) DEFAULT NULL,
+  `ParentCommentId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `ForumId` (`ForumId`),
   KEY `UserId` (`UserId`),
@@ -143,10 +143,10 @@ DROP TABLE IF EXISTS `major`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `major` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `MajorName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `DepartmentId` int DEFAULT NULL,
-  `TrainingTypeId` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `MajorName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `DepartmentId` int(11) DEFAULT NULL,
+  `TrainingTypeId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `DepartmentId` (`DepartmentId`),
   KEY `TrainingTypeId` (`TrainingTypeId`),
@@ -173,10 +173,10 @@ DROP TABLE IF EXISTS `notification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notification` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `StudentId` int DEFAULT NULL,
-  `SubjectTeacherId` int DEFAULT NULL,
-  `Message` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentId` int(11) DEFAULT NULL,
+  `SubjectTeacherId` int(11) DEFAULT NULL,
+  `Message` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `CreatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `StudentId` (`StudentId`),
@@ -203,8 +203,8 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `RoleName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -227,11 +227,11 @@ DROP TABLE IF EXISTS `schoolyear`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schoolyear` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `NameYear` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `YearStart` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `YearEnd` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `SemesterName` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `NameYear` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `YearStart` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `YearEnd` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `SemesterName` varchar(55) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -242,7 +242,7 @@ CREATE TABLE `schoolyear` (
 
 LOCK TABLES `schoolyear` WRITE;
 /*!40000 ALTER TABLE `schoolyear` DISABLE KEYS */;
-INSERT INTO `schoolyear` VALUES (1,'2021-2022','2021-09-01','2022-01-30','Học kỳ 1'),(2,'2021-2022','2022-01-01','2022-06-31','Học kỳ 2'),(3,'2022-2023','2022-09-01','2023-01-28','Học kỳ 1'),(4,'2022-2023','2023-01-01','2023-06-31','Học kỳ 2');
+INSERT INTO `schoolyear` VALUES (1,'2021-2022','2021-09-01','2022-01-30','Học kỳ 1'),(2,'2021-2022','2022-01-01','2022-06-31','Học kỳ 2'),(3,'2023-2024','2022-09-01','2023-01-28','Học kỳ 1'),(4,'2023-2024','2023-01-01','2023-06-31','Học kỳ 2');
 /*!40000 ALTER TABLE `schoolyear` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,12 +254,12 @@ DROP TABLE IF EXISTS `score`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `score` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `SubjectTeacherID` int DEFAULT NULL,
-  `StudentID` int DEFAULT NULL,
-  `SchoolYearId` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `SubjectTeacherID` int(11) DEFAULT NULL,
+  `StudentID` int(11) DEFAULT NULL,
+  `SchoolYearId` int(11) DEFAULT NULL,
   `ScoreValue` float DEFAULT NULL,
-  `ScoreType` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `ScoreType` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `IsDraft` tinyint(1) DEFAULT NULL,
   `IsLocked` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Id`),
@@ -271,7 +271,7 @@ CREATE TABLE `score` (
   CONSTRAINT `score_ibfk_2` FOREIGN KEY (`StudentID`) REFERENCES `student` (`Id`),
   CONSTRAINT `score_ibfk_3` FOREIGN KEY (`SchoolYearId`) REFERENCES `schoolyear` (`Id`),
   CONSTRAINT `score_ibfk_4` FOREIGN KEY (`ScoreType`) REFERENCES `typescore` (`ScoreType`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `score` (
 
 LOCK TABLES `score` WRITE;
 /*!40000 ALTER TABLE `score` DISABLE KEYS */;
-INSERT INTO `score` VALUES (1,1,1,1,8.5,'Giữa kỳ',0,1),(2,1,1,1,9,'Cuối kỳ',0,1),(3,1,2,1,7.2,'Giữa kỳ',0,1),(4,1,2,1,8.3,'Cuối kỳ',0,1),(5,1,3,1,9.5,'Giữa kỳ',0,1),(6,1,3,1,7.7,'Cuối kỳ',0,1),(7,1,4,1,6.8,'Giữa kỳ',0,1),(8,1,4,1,9.2,'Cuối kỳ',0,1),(9,1,5,1,8.7,'Giữa kỳ',0,1),(10,1,5,1,7.5,'Cuối kỳ',0,1),(11,2,1,1,9.5,'Giữa kỳ',0,1),(12,2,1,1,7.7,'Cuối kỳ',0,1),(13,2,2,1,6.8,'Giữa kỳ',0,1),(14,2,2,1,9.2,'Cuối kỳ',0,1),(15,2,3,1,8.7,'Giữa kỳ',0,1),(16,2,3,1,7.5,'Cuối kỳ',0,1),(17,2,4,1,9.3,'Giữa kỳ',0,1),(18,2,4,1,7,'Cuối kỳ',0,1),(19,2,5,1,7.8,'Giữa kỳ',0,1),(20,2,5,1,8.4,'Cuối kỳ',0,1),(21,3,1,1,9.7,'Giữa kỳ',0,1),(22,3,1,1,6,'Cuối kỳ',0,1),(23,3,2,1,8.1,'Giữa kỳ',0,1),(24,3,2,1,8.8,'Cuối kỳ',0,1),(25,3,3,1,9.6,'Giữa kỳ',0,1),(26,3,3,1,7.3,'Cuối kỳ',0,1),(27,3,4,1,8,'Giữa kỳ',0,1),(28,3,4,1,6.5,'Cuối kỳ',0,1),(29,3,5,1,9.4,'Giữa kỳ',0,1),(30,3,5,1,7.9,'Cuối kỳ',0,1),(31,4,1,1,8.6,'Giữa kỳ',0,1),(32,4,1,1,7.4,'Cuối kỳ',0,1),(33,4,2,1,9.2,'Giữa kỳ',0,1),(34,4,2,1,6.7,'Cuối kỳ',0,1),(35,4,3,1,8.9,'Giữa kỳ',0,1),(36,4,3,1,7.8,'Cuối kỳ',0,1),(37,4,4,1,9.1,'Giữa kỳ',0,1),(38,4,4,1,7.2,'Cuối kỳ',0,1),(39,4,5,1,8.5,'Giữa kỳ',0,1),(40,4,5,1,6.9,'Cuối kỳ',0,1),(41,5,1,1,7.2,'Giữa kỳ',0,1),(42,5,1,1,8.9,'Cuối kỳ',0,1),(43,5,2,1,8.5,'Giữa kỳ',0,1),(44,5,2,1,9.6,'Cuối kỳ',0,1),(45,5,3,1,6.7,'Giữa kỳ',0,1),(46,5,3,1,7.8,'Cuối kỳ',0,1),(47,5,4,1,9,'Giữa kỳ',0,1),(48,5,4,1,6.5,'Cuối kỳ',0,1),(49,5,5,1,8.2,'Giữa kỳ',0,1),(50,5,5,1,9.3,'Cuối kỳ',0,1),(51,6,1,2,8.4,'Giữa kỳ',0,1),(52,6,1,2,7.8,'Cuối kỳ',0,1),(53,1,21,1,8.5,'Giữa kỳ',0,1),(54,1,21,1,9,'Cuối kỳ',0,1),(55,1,22,1,7.2,'Giữa kỳ',0,1),(56,1,22,1,8.3,'Cuối kỳ',0,1),(57,1,23,1,9.5,'Giữa kỳ',0,1),(58,1,23,1,7.7,'Cuối kỳ',0,1),(59,1,24,1,6.8,'Giữa kỳ',0,1),(60,1,24,1,9.2,'Cuối kỳ',0,1),(61,1,25,1,8.7,'Giữa kỳ',0,1),(62,1,25,1,7.5,'Cuối kỳ',0,1),(63,2,26,1,9.3,'Giữa kỳ',0,1),(64,2,26,1,7,'Cuối kỳ',0,1),(65,2,27,1,7.8,'Giữa kỳ',0,1),(66,2,27,1,8.4,'Cuối kỳ',0,1),(67,2,28,1,9.7,'Giữa kỳ',0,1),(68,2,28,1,6,'Cuối kỳ',0,1),(69,2,29,1,8.1,'Giữa kỳ',0,1),(70,2,29,1,9.9,'Cuối kỳ',0,1),(71,2,30,1,7.4,'Giữa kỳ',0,1),(72,2,30,1,8.8,'Cuối kỳ',0,1),(73,3,21,1,8,'Giữa kỳ',0,1),(74,3,21,1,7.2,'Cuối kỳ',0,1),(75,3,22,1,9.2,'Giữa kỳ',0,1),(76,3,22,1,8.5,'Cuối kỳ',0,1),(77,3,23,1,7.5,'Giữa kỳ',0,1),(78,3,23,1,9.3,'Cuối kỳ',0,1),(79,3,24,1,6.9,'Giữa kỳ',0,1),(80,3,24,1,8.7,'Cuối kỳ',0,1),(81,3,25,1,9.8,'Giữa kỳ',0,1),(82,3,25,1,7,'Cuối kỳ',0,1),(83,6,2,2,8.5,'Giữa kỳ',0,1),(84,6,2,2,9,'Cuối kỳ',0,1),(85,6,3,2,7.2,'Giữa kỳ',0,1),(86,6,3,2,8.3,'Cuối kỳ',0,1),(87,6,4,2,9.5,'Giữa kỳ',0,1),(88,6,4,2,7.7,'Cuối kỳ',0,1),(89,6,5,2,6.8,'Giữa kỳ',0,1),(90,6,5,2,9.2,'Cuối kỳ',0,1),(91,6,6,2,8.7,'Giữa kỳ',0,1),(92,6,6,2,7.5,'Cuối kỳ',0,1),(93,7,2,2,9.3,'Giữa kỳ',0,1),(94,7,2,2,7,'Cuối kỳ',0,1),(95,7,3,2,7.8,'Giữa kỳ',0,1),(96,7,3,2,8.4,'Cuối kỳ',0,1),(97,7,4,2,9.7,'Giữa kỳ',0,1),(98,7,4,2,6,'Cuối kỳ',0,1),(99,7,5,2,8.1,'Giữa kỳ',0,1),(100,7,5,2,9.9,'Cuối kỳ',0,1),(101,7,6,2,7.4,'Giữa kỳ',0,1),(102,7,6,2,8.8,'Cuối kỳ',0,1),(103,8,2,2,8,'Giữa kỳ',0,1),(104,8,2,2,7.2,'Cuối kỳ',0,1),(105,8,3,2,9.2,'Giữa kỳ',0,1),(106,8,3,2,8.5,'Cuối kỳ',0,1),(107,8,4,2,7.5,'Giữa kỳ',0,1),(108,8,4,2,9.3,'Cuối kỳ',0,1),(109,8,5,2,6.9,'Giữa kỳ',0,1),(110,8,5,2,8.7,'Cuối kỳ',0,1),(111,8,6,2,9.8,'Giữa kỳ',0,1),(112,8,6,2,7,'Cuối kỳ',0,1),(113,9,2,2,8.8,'Giữa kỳ',0,1),(114,9,2,2,7.5,'Cuối kỳ',0,1),(115,9,3,2,7.3,'Giữa kỳ',0,1),(116,9,3,2,8.9,'Cuối kỳ',0,1),(117,9,4,2,9.6,'Giữa kỳ',0,1),(118,9,4,2,6.2,'Cuối kỳ',0,1),(119,9,5,2,8.5,'Giữa kỳ',0,1),(120,9,5,2,9.7,'Cuối kỳ',0,1),(121,9,6,2,7.7,'Giữa kỳ',0,1),(122,9,6,2,8.4,'Cuối kỳ',0,1);
+INSERT INTO `score` VALUES (1,1,1,1,8.5,'Giữa kỳ',0,1),(2,1,1,1,9,'Cuối kỳ',0,1),(3,1,2,1,7.2,'Giữa kỳ',0,1),(4,1,2,1,8.3,'Cuối kỳ',0,1),(5,1,3,1,9.5,'Giữa kỳ',0,1),(6,1,3,1,7.7,'Cuối kỳ',0,1),(7,1,4,1,6.8,'Giữa kỳ',0,1),(8,1,4,1,9.2,'Cuối kỳ',0,1),(9,1,5,1,8.7,'Giữa kỳ',0,1),(10,1,5,1,7.5,'Cuối kỳ',0,1),(11,2,1,1,9.5,'Giữa kỳ',0,1),(12,2,1,1,7.7,'Cuối kỳ',0,1),(13,2,2,1,6.8,'Giữa kỳ',0,1),(14,2,2,1,9.2,'Cuối kỳ',0,1),(15,2,3,1,8.7,'Giữa kỳ',0,1),(16,2,3,1,7.5,'Cuối kỳ',0,1),(17,2,4,1,9.3,'Giữa kỳ',0,1),(18,2,4,1,7,'Cuối kỳ',0,1),(19,2,5,1,7.8,'Giữa kỳ',0,1),(20,2,5,1,8.4,'Cuối kỳ',0,1),(21,3,1,1,9.7,'Giữa kỳ',0,1),(22,3,1,1,6,'Cuối kỳ',0,1),(23,3,2,1,8.1,'Giữa kỳ',0,1),(24,3,2,1,8.8,'Cuối kỳ',0,1),(25,3,3,1,9.6,'Giữa kỳ',0,1),(26,3,3,1,7.3,'Cuối kỳ',0,1),(27,3,4,1,8,'Giữa kỳ',0,1),(28,3,4,1,6.5,'Cuối kỳ',0,1),(29,3,5,1,9.4,'Giữa kỳ',0,1),(30,3,5,1,7.9,'Cuối kỳ',0,1),(31,4,1,1,8.6,'Giữa kỳ',0,1),(32,4,1,1,7.4,'Cuối kỳ',0,1),(33,4,2,1,9.2,'Giữa kỳ',0,1),(34,4,2,1,6.7,'Cuối kỳ',0,1),(35,4,3,1,8.9,'Giữa kỳ',0,1),(36,4,3,1,7.8,'Cuối kỳ',0,1),(37,4,4,1,9.1,'Giữa kỳ',0,1),(38,4,4,1,7.2,'Cuối kỳ',0,1),(39,4,5,1,8.5,'Giữa kỳ',0,1),(40,4,5,1,6.9,'Cuối kỳ',0,1),(41,5,1,1,7.2,'Giữa kỳ',0,1),(42,5,1,1,8.9,'Cuối kỳ',0,1),(43,5,2,1,8.5,'Giữa kỳ',0,1),(44,5,2,1,9.6,'Cuối kỳ',0,1),(45,5,3,1,6.7,'Giữa kỳ',0,1),(46,5,3,1,7.8,'Cuối kỳ',0,1),(47,5,4,1,9,'Giữa kỳ',0,1),(48,5,4,1,6.5,'Cuối kỳ',0,1),(49,5,5,1,8.2,'Giữa kỳ',0,1),(50,5,5,1,9.3,'Cuối kỳ',0,1),(51,6,1,2,8.4,'Giữa kỳ',0,1),(52,6,1,2,7.8,'Cuối kỳ',0,1),(53,1,21,1,8.5,'Giữa kỳ',0,1),(54,1,21,1,9,'Cuối kỳ',0,1),(55,1,22,1,7.2,'Giữa kỳ',0,1),(56,1,22,1,8.3,'Cuối kỳ',0,1),(57,1,23,1,9.5,'Giữa kỳ',0,1),(58,1,23,1,7.7,'Cuối kỳ',0,1),(59,1,24,1,6.8,'Giữa kỳ',0,1),(60,1,24,1,9.2,'Cuối kỳ',0,1),(61,1,25,1,8.7,'Giữa kỳ',0,1),(62,1,25,1,7.5,'Cuối kỳ',0,1),(63,2,26,1,9.3,'Giữa kỳ',0,1),(64,2,26,1,7,'Cuối kỳ',0,1),(65,2,27,1,7.8,'Giữa kỳ',0,1),(66,2,27,1,8.4,'Cuối kỳ',0,1),(67,2,28,1,9.7,'Giữa kỳ',0,1),(68,2,28,1,6,'Cuối kỳ',0,1),(69,2,29,1,8.1,'Giữa kỳ',0,1),(70,2,29,1,9.9,'Cuối kỳ',0,1),(71,2,30,1,7.4,'Giữa kỳ',0,1),(72,2,30,1,8.8,'Cuối kỳ',0,1),(73,3,21,1,8,'Giữa kỳ',0,1),(74,3,21,1,7.2,'Cuối kỳ',0,1),(75,3,22,1,9.2,'Giữa kỳ',0,1),(76,3,22,1,8.5,'Cuối kỳ',0,1),(77,3,23,1,7.5,'Giữa kỳ',0,1),(78,3,23,1,9.3,'Cuối kỳ',0,1),(79,3,24,1,6.9,'Giữa kỳ',0,1),(80,3,24,1,8.7,'Cuối kỳ',0,1),(81,3,25,1,9.8,'Giữa kỳ',0,1),(82,3,25,1,7,'Cuối kỳ',0,1),(83,6,2,2,8.5,'Giữa kỳ',0,1),(84,6,2,2,9,'Cuối kỳ',0,1),(85,6,3,2,7.2,'Giữa kỳ',0,1),(86,6,3,2,8.3,'Cuối kỳ',0,1),(87,6,4,2,9.5,'Giữa kỳ',0,1),(88,6,4,2,7.7,'Cuối kỳ',0,1),(89,6,5,2,6.8,'Giữa kỳ',0,1),(90,6,5,2,9.2,'Cuối kỳ',0,1),(91,6,6,2,8.7,'Giữa kỳ',0,1),(92,6,6,2,7.5,'Cuối kỳ',0,1),(93,7,2,2,9.3,'Giữa kỳ',0,1),(94,7,2,2,7,'Cuối kỳ',0,1),(95,7,3,2,7.8,'Giữa kỳ',0,1),(96,7,3,2,8.4,'Cuối kỳ',0,1),(97,7,4,2,9.7,'Giữa kỳ',0,1),(98,7,4,2,6,'Cuối kỳ',0,1),(99,7,5,2,8.1,'Giữa kỳ',0,1),(100,7,5,2,9.9,'Cuối kỳ',0,1),(101,7,6,2,7.4,'Giữa kỳ',0,1),(102,7,6,2,8.8,'Cuối kỳ',0,1),(103,8,2,2,8,'Giữa kỳ',0,1),(104,8,2,2,7.2,'Cuối kỳ',0,1),(105,8,3,2,9.2,'Giữa kỳ',0,1),(106,8,3,2,8.5,'Cuối kỳ',0,1),(107,8,4,2,7.5,'Giữa kỳ',0,1),(108,8,4,2,9.3,'Cuối kỳ',0,1),(109,8,5,2,6.9,'Giữa kỳ',0,1),(110,8,5,2,8.7,'Cuối kỳ',0,1),(111,8,6,2,9.8,'Giữa kỳ',0,1),(112,8,6,2,7,'Cuối kỳ',0,1),(113,9,2,2,8.8,'Giữa kỳ',0,1),(114,9,2,2,7.5,'Cuối kỳ',0,1),(115,9,3,2,7.3,'Giữa kỳ',0,1),(116,9,3,2,8.9,'Cuối kỳ',0,1),(117,9,4,2,9.6,'Giữa kỳ',0,1),(118,9,4,2,6.2,'Cuối kỳ',0,1),(119,9,5,2,8.5,'Giữa kỳ',0,1),(120,9,5,2,9.7,'Cuối kỳ',0,1),(121,9,6,2,7.7,'Giữa kỳ',0,1),(122,9,6,2,8.4,'Cuối kỳ',0,1),(123,4,2,3,9,'Giữa kỳ',0,1),(124,4,2,3,9,'Cuối kỳ',0,1),(126,4,2,3,10,'Bonus3',0,1);
 /*!40000 ALTER TABLE `score` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,18 +292,18 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `StudentCode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `FirstName` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `LastName` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Gender` tinyint DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentCode` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `FirstName` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `LastName` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Gender` tinyint(4) DEFAULT NULL,
   `IdentifyCard` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Hometown` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Hometown` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Birthdate` date DEFAULT NULL,
   `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Phone` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Status` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `ClassId` int DEFAULT NULL,
+  `Phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ClassId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `StudentCode` (`StudentCode`),
   UNIQUE KEY `Email_UNIQUE` (`Email`),
@@ -331,10 +331,10 @@ DROP TABLE IF EXISTS `studentsubjectteacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `studentsubjectteacher` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `StudentId` int DEFAULT NULL,
-  `SubjectTeacherId` int DEFAULT NULL,
-  `SchoolYearId` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentId` int(11) DEFAULT NULL,
+  `SubjectTeacherId` int(11) DEFAULT NULL,
+  `SchoolYearId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `StudentId` (`StudentId`),
   KEY `SubjectTeacherId` (`SubjectTeacherId`),
@@ -351,7 +351,7 @@ CREATE TABLE `studentsubjectteacher` (
 
 LOCK TABLES `studentsubjectteacher` WRITE;
 /*!40000 ALTER TABLE `studentsubjectteacher` DISABLE KEYS */;
-INSERT INTO `studentsubjectteacher` VALUES (1,1,1,1),(2,1,2,1),(3,2,3,1),(4,2,4,1),(5,3,5,1),(6,3,6,1),(7,4,7,1),(8,4,8,1),(9,5,9,1),(10,5,1,1),(11,1,6,2),(12,2,6,2),(13,3,6,2),(14,4,6,2),(15,5,6,2),(16,6,6,2),(17,2,7,2),(18,3,7,2),(19,4,7,2),(20,5,7,2),(21,6,7,2),(22,2,8,2),(23,3,8,2),(24,4,8,2),(25,5,8,2),(26,6,8,2),(27,2,9,2),(28,3,9,2),(29,4,9,2),(30,5,9,2),(31,6,9,2);
+INSERT INTO `studentsubjectteacher` VALUES (1,1,1,3),(2,1,2,3),(3,2,3,3),(4,2,4,3),(5,3,5,3),(6,3,6,3),(7,4,7,3),(8,4,8,3),(9,5,9,3),(10,5,1,3),(11,1,6,3),(12,2,6,3),(13,3,6,3),(14,4,6,2),(15,5,6,2),(16,6,6,2),(17,2,7,2),(18,3,7,2),(19,4,7,2),(20,5,7,2),(21,6,7,2),(22,2,8,2),(23,3,8,2),(24,4,8,2),(25,5,8,2),(26,6,8,2),(27,2,9,2),(28,3,9,2),(29,4,9,2),(30,5,9,2),(31,6,9,2);
 /*!40000 ALTER TABLE `studentsubjectteacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,10 +363,10 @@ DROP TABLE IF EXISTS `subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subject` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `SubjectName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Credits` int DEFAULT NULL,
-  `NumberOfLessons` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `SubjectName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Credits` int(11) DEFAULT NULL,
+  `NumberOfLessons` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -389,9 +389,9 @@ DROP TABLE IF EXISTS `subjectteacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subjectteacher` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `SubjectId` int DEFAULT NULL,
-  `TeacherId` int DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `SubjectId` int(11) DEFAULT NULL,
+  `TeacherId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `SubjectId` (`SubjectId`),
   KEY `TeacherId` (`TeacherId`),
@@ -418,14 +418,14 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `teacher` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `TeacherName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Email` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `PhoneNumber` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Gender` tinyint DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `TeacherName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Email` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `PhoneNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Gender` tinyint(4) DEFAULT NULL,
   `Birthdate` date DEFAULT NULL,
-  `DepartmentId` int DEFAULT NULL,
+  `DepartmentId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `DepartmentId` (`DepartmentId`),
   CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`DepartmentId`) REFERENCES `department` (`Id`)
@@ -450,8 +450,8 @@ DROP TABLE IF EXISTS `trainingtype`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trainingtype` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `TrainingTypeName` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `TrainingTypeName` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -474,7 +474,7 @@ DROP TABLE IF EXISTS `typescore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `typescore` (
-  `ScoreType` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `ScoreType` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`ScoreType`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -485,7 +485,7 @@ CREATE TABLE `typescore` (
 
 LOCK TABLES `typescore` WRITE;
 /*!40000 ALTER TABLE `typescore` DISABLE KEYS */;
-INSERT INTO `typescore` VALUES ('Bonus 1'),('Bonus 2'),('Bonus 3'),('Cuối kỳ'),('Giữa kỳ');
+INSERT INTO `typescore` VALUES ('Bonu4'),('Bonus3'),('Bonus4'),('Cuối kỳ'),('Giữa kỳ');
 /*!40000 ALTER TABLE `typescore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -497,25 +497,25 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(125) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `Gender` tinyint DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Gender` tinyint(4) DEFAULT NULL,
   `IdentifyCard` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Hometown` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Hometown` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Birthdate` date DEFAULT NULL,
   `Phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Image` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Active` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RoleID` int DEFAULT NULL,
+  `RoleID` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Phone_UNIQUE` (`Phone`),
   UNIQUE KEY `IdentifyCard_UNIQUE` (`IdentifyCard`),
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `RoleID` (`RoleID`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`RoleID`) REFERENCES `role` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -524,7 +524,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Dương Hữu Thành',1,'0383160679','Hồ Chí Minh','1993-04-12','0123456789','dthanh','123456','profile_image_a.jpg','Active',1),(2,'Vũ Thanh Tâm',1,'987654321','Hồ Chí Minh','1985-05-20','0987654321','vthtam','123456','profile_image_b.jpg','Active',2),(3,'Nguyễn Quốc Kỳ',1,'035789123','Bình Định','2002-09-10','0345678912','nquocky','07062002','profile_image_c.jpg','Active',3),(4,'Võ Hữu Nghĩa',1,'036789123','Gia Lai','2002-01-10','0345673512','vhuunghia','11012002','profile_image_d.jpg','Active',3);
+INSERT INTO `user` VALUES (1,'Dương Hữu Thành',1,'0383160679','Hồ Chí Minh','1993-04-12','0123456789','dthanh','123456','profile_image_a.jpg','Active',1),(2,'Vũ Thanh Tâm',1,'987654321','Hồ Chí Minh','1985-05-20','0987654321','vthtam','123456','profile_image_b.jpg','Active',2),(3,'Nguyễn Quốc Kỳ',1,'035789123','Bình Định','2002-09-10','0345678912','nquocky','07062002','profile_image_c.jpg','Active',3),(4,'Võ Hữu Nghĩa',1,'036789123','Gia Lai','2002-01-10','0345673512','vhuunghia','11012002','profile_image_d.jpg','Active',3),(5,'Thị Ánh',0,'123456789','Hà Nội','2002-01-15','0351234567','tranbaotram@gmail.com','$2a$10$1BxUTHcNgKCQdtvuhMiH1u.y2fyT9.DPCjxapTG8WCUpiWBzbsheK','https://res.cloudinary.com/dup9wlfhh/image/upload/v1694341343/so2bxlsdbdgpmk03esyq.jpg','Active',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -537,4 +537,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 19:33:11
+-- Dump completed on 2023-09-10 17:28:09

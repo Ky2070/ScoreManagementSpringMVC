@@ -4,17 +4,16 @@
  */
 package com.hcmou.controllers;
 
-import com.hcmou.pojo.Class;
 import com.hcmou.pojo.Department;
+import com.hcmou.pojo.Major;
 import com.hcmou.pojo.Trainingtype;
-import com.hcmou.service.ClassService;
 import com.hcmou.service.DepartmentService;
+import com.hcmou.service.MajorService;
 import com.hcmou.service.TrainingTypeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,14 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author nguye
  */
 @Controller
-public class ClassController {
+public class MajorController {
     @Autowired
-    private ClassService classServ;
-   
-    @GetMapping("/classes")
-    public String list(Model model, @RequestParam("majorId") int majorId) {
-        List<Class> classes = classServ.getClassesByMajorId(majorId);
-        model.addAttribute("classes", classes);
-        return "class";
+    private MajorService majorService;
+  
+      @GetMapping("/major")
+    public String showMajorPage(Model model, @RequestParam("departmentId") int departmentId) {
+        // Lấy danh sách các Major tương ứng với departmentId và đưa vào model để hiển thị trong trang major.jsp
+        List<Major> majors = majorService.getMajorsByDepartmentId(departmentId);
+        model.addAttribute("majors", majors);
+        return "major";
     }
+    
 }

@@ -150,7 +150,7 @@ public class Subjectteacher implements Serializable {
 
     @Override
     public String toString() {
-        return "com.hcmou.pojo.Subjectteacher[ id=" + id + " ]";
+        return teacherId + " - " + subjectId;
     }
     
 }

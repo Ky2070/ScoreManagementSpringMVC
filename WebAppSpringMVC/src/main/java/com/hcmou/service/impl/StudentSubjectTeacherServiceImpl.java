@@ -4,9 +4,9 @@
  */
 package com.hcmou.service.impl;
 
-import com.hcmou.pojo.Class;
-import com.hcmou.repository.ClassRepository;
-import com.hcmou.service.ClassService;
+import com.hcmou.pojo.Studentsubjectteacher;
+import com.hcmou.repository.StudentSubjectTeacherRepository;
+import com.hcmou.service.StudentSubjectTeacherService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +16,13 @@ import org.springframework.stereotype.Service;
  * @author nguye
  */
 @Service
-public class ClassServiceImpl implements ClassService {
+public class StudentSubjectTeacherServiceImpl implements StudentSubjectTeacherService {
     
     @Autowired
-    private ClassRepository classRepo;
-    
+    private StudentSubjectTeacherRepository studsubjteachRepo;
     @Override
-    public List<Class> getClasses() {
-        return this.classRepo.getClasses();
-    }
-
-    @Override
-    public List<Class> getClassesByMajorId(int majorId) {
-        return this.classRepo.getClassesByMajorId(majorId);
+    public List<Studentsubjectteacher> getStudsubjteachs() {
+        return this.studsubjteachRepo.getStudsubjteachs();
     }
     
 }

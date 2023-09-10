@@ -4,13 +4,15 @@
  */
 package com.hcmou.repository;
 
-import com.hcmou.pojo.Class;
+import com.hcmou.pojo.Forum;
 import java.util.List;
+
 /**
  *
  * @author nguye
  */
-public interface ClassRepository {
-    List<Class> getClasses();
-    List<Class> getClassesByMajorId(int majorId);
+public interface ForumRepository {
+    List<Forum> getForums();
+    List<Forum> getForumBySubjectTeacher(int subjectTeacherId);
+    boolean addForum(Forum forum);
 }

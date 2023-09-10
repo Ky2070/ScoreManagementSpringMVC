@@ -5,20 +5,29 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Quản lý hệ thống điểm</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Danh sách Ngành</h1>
+        <div class="row">
+            <c:forEach items="${majors}" var="majors">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${majors.majorName} - ${majors.trainingTypeId}</h5>
+                            <p class="card-text">Description or details about the major.</p>
+                            <a href="classes?majorId=${majors.id}" class="btn btn-primary">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
-    </body>
+    </div>
+</body>
 </html>

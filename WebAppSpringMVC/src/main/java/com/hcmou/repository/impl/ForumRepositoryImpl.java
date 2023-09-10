@@ -4,17 +4,16 @@
  */
 package com.hcmou.repository.impl;
 
-import com.hcmou.pojo.Class;
-import com.hcmou.pojo.Student;
-import com.hcmou.repository.ClassRepository;
+import com.hcmou.pojo.Forum;
+import com.hcmou.repository.ForumRepository;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,34 +24,44 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class ClassRepositoryImpl implements ClassRepository {
-    
+public class ForumRepositoryImpl implements ForumRepository {
+
     @Autowired
-    LocalSessionFactoryBean factory;
-    @Autowired
-    private Environment env;
+    private LocalSessionFactoryBean factory;
+
     @Override
-    public List<Class> getClasses() {
-       Session s = this.factory.getObject().getCurrentSession();
+    public List<Forum> getForums() {
+        Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Class> q = b.createQuery(Class.class);
-        Root root = q.from(Class.class);
-        q.select(root); 
+        CriteriaQuery<Forum> q = b.createQuery(Forum.class);
+        Root root = q.from(Forum.class);
+        q.select(root);
         Query query = s.createQuery(q);
-        return query.getResultList();      
+        return query.getResultList();
     }
 
     @Override
-    public List<Class> getClassesByMajorId(int majorId) {
+    public List<Forum> getForumBySubjectTeacher(int subjectTeacherId) {
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Class> q = b.createQuery(Class.class);
-        Root root = q.from(Class.class);
+        CriteriaQuery<Forum> q = b.createQuery(Forum.class);
+        Root root = q.from(Forum.class);
         q.select(root);
-        q.where(b.equal(root.get("majorId"), majorId));
+        q.where(b.equal(root.get("subjectTeacherId"), subjectTeacherId));
         Query query = s.createQuery(q);
-        return query.getResultList();     
+        return query.getResultList();
     }
-    
-    
+
+    @Override
+    public boolean addForum(Forum forum) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.save(forum);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

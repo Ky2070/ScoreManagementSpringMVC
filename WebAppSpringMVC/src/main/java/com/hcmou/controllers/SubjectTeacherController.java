@@ -4,13 +4,12 @@
  */
 package com.hcmou.controllers;
 
-import com.hcmou.pojo.Student;
-import com.hcmou.service.StudentService;
+import com.hcmou.pojo.Subjectteacher;
+import com.hcmou.service.SubjectTeacherService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -18,15 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author nguye
  */
 @Controller
-public class StudentController {
-
+public class SubjectTeacherController {
     @Autowired
-    private StudentService studService;
-
-    @GetMapping("/students")
-    public String list(Model model) {
-        List<Student> students = studService.getStudents();
-        model.addAttribute("students", students);
-        return "student";
+    private SubjectTeacherService subjTeachService;
+    @GetMapping("/subjTeach")
+    public String listST(Model model){
+        List<Subjectteacher> subjteachs = subjTeachService.getSubjectTeachers();
+        
+        model.addAttribute("subjteachs", subjteachs);
+        
+        return "subjTeach";
     }
 }

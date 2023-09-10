@@ -4,13 +4,13 @@
  */
 package com.hcmou.repository;
 
-import com.hcmou.pojo.Class;
+import com.hcmou.pojo.Subjectteacher;
 import java.util.List;
+
 /**
  *
  * @author nguye
  */
-public interface ClassRepository {
-    List<Class> getClasses();
-    List<Class> getClassesByMajorId(int majorId);
+public interface SubjectTeacherRepository {
+    List<Subjectteacher> getSubjectTeachers();
 }

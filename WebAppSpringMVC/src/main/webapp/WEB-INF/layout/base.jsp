@@ -32,11 +32,11 @@
 
     </head>
     <body>
-    <div class ="container">
         <!--HEADER -->
         <tiles:insertAttribute name="header"/>
-        <!--CONTENT -->
-        <tiles:insertAttribute name="content"/>
+         <div class="container">
+              <tiles:insertAttribute name="content"/> 
+        </div>
         <!--FOOTER -->
         <tiles:insertAttribute name="footer"/>
     </div>

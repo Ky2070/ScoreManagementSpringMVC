@@ -54,7 +54,7 @@ const ListStudent = () => {
         <>
             <div className='list-function-of-teacher'>
                 <div className="sticky-panel" id="stickyPanel">
-                    <h1 className="function-name">CHỨC NĂNG {selectedSubjectTeacherId}</h1>
+                    <h1 className="function-name">CHỨC NĂNG</h1>
                     <Link className="panel-button" as={Link} to="/liststudent">Xem danh sách sinh viên</Link>
                     <Link className="panel-button" as={Link} to="/listscore">Chỉnh sửa điểm</Link>
                     <Link className="panel-button" as={Link} to="/exportscore">Xuất bảng điểm</Link>

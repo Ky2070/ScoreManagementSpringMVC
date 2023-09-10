@@ -62,61 +62,7 @@ public class ApiUserController {
             return new ResponseEntity<>("Tên người dùng, mật khẩu hoặc vai trò không đúng", HttpStatus.UNAUTHORIZED);
         }
     }
-//    @PostMapping("/login")
-//    @CrossOrigin
-//    public ResponseEntity<String> login(@RequestBody User user) {
-//
-//        // Xác thực người dùng
-//        if (this.userService.authUser(user.getUsername(), user.getPassword())) {
-//            User authenticatedUser = userService.getUserByUn(user.getUsername());
-//
-//            // Kiểm tra vai trò của người dùng
-//            if (authenticatedUser.getRoleID() != null && authenticatedUser.getRoleID().getRoleName().equals(user.getRoleID())) {
-//                // Nếu vai trò khớp, tạo token và gửi lại
-//                String token = this.jwtService.generateTokenLogin(user.getUsername(), authenticatedUser.getRoleID().getRoleName());
-//                return new ResponseEntity<>(token, HttpStatus.OK);
-//            } else {
-//                // Nếu vai trò không khớp hoặc roleID không tồn tại, trả về thông báo lỗi
-//                return new ResponseEntity<>("Không đúng role", HttpStatus.UNAUTHORIZED);
-//            }
-//        } else {
-//            return new ResponseEntity<>("Mật khẩu không đúng", HttpStatus.UNAUTHORIZED);
-//        }
-//    }
 
-//    @PostMapping("/test")
-//public ResponseEntity<String> test(HttpServletRequest request) {
-//    // Lấy tiêu đề "Authorization" từ yêu cầu
-//    String authorizationHeader = request.getHeader("Authorization");
-//
-//    // Kiểm tra xem tiêu đề Authorization có tồn tại và có chứa mã token không
-//    if (authorizationHeader != null) {
-//
-//            return new ResponseEntity<>("SUCCESSFUL", HttpStatus.OK);
-//
-//    }
-//// Thay thế bằng phương thức lấy tên người dùng từ mã token của bạn
-//    // Nếu không có hoặc không hợp lệ, trả về lỗi truy cập bị từ chối
-//    return new ResponseEntity<>("Như cc", HttpStatus.FORBIDDEN);
-//}
-//    @PostMapping(path = "/users/",
-//            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
-//            produces = {MediaType.APPLICATION_JSON_VALUE})
-//    @CrossOrigin()
-//    public ResponseEntity<?> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-//        // Trích xuất email từ params
-//        String email = params.get("email");
-//        // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu hay chưa
-//        if (!userService.isEmailExists(email)) {
-//            // Nếu email không tồn tại, trả về mã lỗi 404 (Not Found) và thông báo lỗi
-//            return new ResponseEntity<>(email, HttpStatus.NOT_FOUND);
-//        }
-//
-//        // Tiếp tục xử lý đăng ký nếu email hợp lệ
-//        // ...
-//        return new ResponseEntity<>("Có email", HttpStatus.OK);
-//    }
-//    
     @PostMapping(path = "/users/",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})

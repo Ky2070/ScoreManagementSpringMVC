@@ -86,7 +86,7 @@ const Header = () => {
                         ) : null}
                         {user !== null && (user.roleID.id === 1 || user.roleID.id === 2 || user.roleID.id === 3 ) ? (
                             <Nav.Link as={Link} to="/chatfirebase" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                                Chat FireBase
+                                Chat Online
                             </Nav.Link>
                         ) : null}
                         {user === null ? <>

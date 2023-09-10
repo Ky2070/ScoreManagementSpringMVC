@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface TeacherRepository {
     int getidTeacherByEmail(String email);
+    int getidStudentByEmail(String email);
 }

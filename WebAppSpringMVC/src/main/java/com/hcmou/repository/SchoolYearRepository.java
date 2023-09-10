@@ -1,6 +1,8 @@
 package com.hcmou.repository;
 
 import com.hcmou.pojo.Schoolyear;
+import com.hcmou.pojo.Subjectteacher;
+import com.hcmou.pojo.Typescore;
 import java.util.List;
 
 /*
@@ -14,4 +16,7 @@ import java.util.List;
  */
 public interface SchoolYearRepository {
     List<Schoolyear> getListSchoolYear(String currentYear);
+    Schoolyear getSchoolYearById(int SchoolYearId);
+    Subjectteacher getSubJectTeacherById(int subJectTeacherId);
+    Typescore getScoreTypeByName(String typeScore);
 }

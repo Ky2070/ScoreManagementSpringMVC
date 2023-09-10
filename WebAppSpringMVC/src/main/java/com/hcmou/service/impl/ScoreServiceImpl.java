@@ -4,10 +4,12 @@
  */
 package com.hcmou.service.impl;
 
+import com.hcmou.pojo.ListScoreDTO;
 import com.hcmou.pojo.Score;
 import com.hcmou.repository.ScoreRepository;
 import com.hcmou.service.ScoreService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -20,11 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 //Tầng này để kết nối với controller để xử lý
 //Lưu ý gắn annotation @Service
 @Service
-public class ScoreServiceImpl implements ScoreService{
+public class ScoreServiceImpl implements ScoreService {
+
     @Autowired
     private ScoreRepository scoreRepo;
-    
-    
+
     @Override
     @Transactional
     public List<Score> getScores() {
@@ -43,7 +45,7 @@ public class ScoreServiceImpl implements ScoreService{
 
     @Override
     public List<Score> getScoreByStudentFullName(String firstName, String lastName) {
-            return this.scoreRepo.getScoreByStudentFullName(firstName, lastName);
+        return this.scoreRepo.getScoreByStudentFullName(firstName, lastName);
     }
 
     @Override
@@ -55,5 +57,20 @@ public class ScoreServiceImpl implements ScoreService{
     public List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId) {
         return this.scoreRepo.getSubjectScoresByStudentCodeAndSchoolYear(studentCode, schoolYearId);
     }
+
+    @Override
+    public List<Score> getListScoreBySubjectTeacherIdAndSchoolYearId(int subjectTeacherID, int schoolYearId) {
+        return this.scoreRepo.getListScoreBySubjectTeacherIdAndSchoolYearId(subjectTeacherID, schoolYearId);
+    }
+
+    @Override
+    public boolean saveListScoreByListScoreDTO(ListScoreDTO listScoreDTO) {
+        return this.scoreRepo.saveListScoreByListScoreDTO(listScoreDTO);
+    }
     
+    
+    @Override
+    public List<Score> getListScoreBySubjectTeacherIdAndSchoolYearIdAndStudentId(int subjectTeacherID, int schoolYearId, int studentID) {
+        return this.scoreRepo.getListScoreBySubjectTeacherIdAndSchoolYearIdAndStudentId(subjectTeacherID, schoolYearId, studentID);
+    }
 }

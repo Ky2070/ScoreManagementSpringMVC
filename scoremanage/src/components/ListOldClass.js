@@ -7,14 +7,13 @@ import { MyUserContext } from '../App';
 import Apis, { endpoints } from '../configs/Apis';
 import cookie from "react-cookies";
 import { UniqueSubjectTeacherIdContext } from '../reducers/UniqueSubjectTeacherIdContext';
-const HandleClass = () => {
+const ListOldClass = () => {
     const { selectedSchoolYearId } = useSchoolYear();
     const [user] = useContext(MyUserContext);
-    const [subjects, setSubjects] = useState([]);
     const [uniqueSubjectTeacherIdList, setUniqueSubjectTeacherIdList] = useState([]);
-
     const {selectedSubjectTeacherId, setSelectedSubjectTeacherId } = useContext(UniqueSubjectTeacherIdContext);
 
+    const [listOldClass, setListOldClass] = useState([]);
     
     useEffect(() => {
         const fetchData = async () => {
@@ -27,14 +26,18 @@ const HandleClass = () => {
                     'Authorization': cookie.load('token'),
                     'Content-Type': 'application/json',
                 };
-                const response = await Apis.post(endpoints['listsubject'], requestData, { headers });
+                const response = await Apis.post(endpoints['listoldclass'], requestData, { headers });
 
                 if (response.status === 200) {
                     const responseData = response.data; // Lấy dữ liệu từ response
-                    const uniqueSubjectTeacherIdList = responseData.uniqueSubjectTeacherIdList;
-                    const listSubject = responseData.listSubject;
-                    setSubjects(listSubject); // Đặt giá trị subjects
-                    setUniqueSubjectTeacherIdList(uniqueSubjectTeacherIdList);;
+
+                    setListOldClass(responseData);
+
+                    // console.log(responseData);
+                    // const uniqueSubjectTeacherIdList = responseData.uniqueSubjectTeacherIdList;
+                    // const listSubject = responseData.listSubject;
+                    // setSubjects(listSubject); // Đặt giá trị subjects
+                    // setUniqueSubjectTeacherIdList(uniqueSubjectTeacherIdList);;
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -52,21 +55,21 @@ const HandleClass = () => {
         setSelectedSubjectTeacherId(uniqueId);
     };
 
-
-    const renderCards = (listSubject) => {
-        return listSubject.map((subject, index) => (
-            <Card key={index} id={`${uniqueSubjectTeacherIdList[index]}`} style={{ width: '18rem', margin: '10px 10px 10px 0' }}>
+    const renderCards = (listOldClass) => {
+        return listOldClass.map((subject, index) => (
+            <Card key={index} id={subject.id} style={{ width: '18rem', margin: '10px 10px 10px 0' }}>
+                {/* {console.log(selectedSubjectTeacherId)} */}
                 <Card.Img variant="top" src="https://img.lovepik.com/photo/40006/4475.jpg_wh860.jpg" />
                 <Card.Body>
-                    <Card.Title>{subject.subjectName}</Card.Title>
+                    <Card.Title>{subject.subjectId.subjectName}</Card.Title>
                     <Card.Text>
-                        Số tín chỉ: {subject.credits}
+                        Số tín chỉ: {subject.subjectId.credits}
                     </Card.Text>
                     <Button
                         as={Link}
                         variant="secondary"
-                        to="/liststudent"
-                        onClick={() => handleGoToClass(uniqueSubjectTeacherIdList[index])}
+                        to="/listscoreofstudent"
+                        onClick={() => handleGoToClass(subject.id)}
                     >
                         Đi đến môn học
                     </Button>
@@ -85,10 +88,10 @@ const HandleClass = () => {
                 border: '1px solid #ccc',
                 padding: '10px',
             }}>
-                {renderCards(subjects)}
+                {renderCards(listOldClass)}
             </div>
         </>
     );
 };
 
-export default HandleClass;
+export default ListOldClass;

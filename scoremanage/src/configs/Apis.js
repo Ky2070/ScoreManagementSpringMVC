@@ -10,6 +10,11 @@ export const endpoints = {
     "register": `${SERVER_CONTEXT}/api/users/`,
     "schoolyear": `${SERVER_CONTEXT}/api/schoolyear`,
     "listsubject": `${SERVER_CONTEXT}/api/listsubject`,
+    "liststudents": `${SERVER_CONTEXT}/api/listsubject/liststudents`,
+    "listscore": `${SERVER_CONTEXT}/api/listscore`,
+    "savelistscore": `${SERVER_CONTEXT}/api/savelistscore`,
+    "listoldclass": `${SERVER_CONTEXT}/api/listoldclass`,
+    "listscoreofstudent": `${SERVER_CONTEXT}/api/listscoreofstudent`,
 }
 
 export const authApi = () => {

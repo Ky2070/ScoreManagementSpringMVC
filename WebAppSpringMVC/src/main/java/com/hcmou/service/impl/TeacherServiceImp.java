@@ -25,4 +25,9 @@ public class TeacherServiceImp implements TeacherService{
     public int getIdTeacherByEmail(String email){
         return this.teacherRepository.getidTeacherByEmail(email);
     }
+    
+    @Override
+    public int getidStudentByEmail(String email){
+        return this.teacherRepository.getidStudentByEmail(email);
+    }
 }

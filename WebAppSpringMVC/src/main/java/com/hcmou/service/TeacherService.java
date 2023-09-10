@@ -11,5 +11,8 @@ import com.hcmou.pojo.Teacher;
  * @author vhuunghia
  */
 public interface TeacherService {
+
     int getIdTeacherByEmail(String email);
+
+    int getidStudentByEmail(String email);
 }

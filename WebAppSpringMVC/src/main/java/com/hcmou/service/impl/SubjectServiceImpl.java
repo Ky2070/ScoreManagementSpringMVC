@@ -4,7 +4,9 @@
  */
 package com.hcmou.service.impl;
 
+import com.hcmou.pojo.Studentsubjectteacher;
 import com.hcmou.pojo.Subject;
+import com.hcmou.pojo.Subjectteacher;
 import com.hcmou.repository.SubjectRepository;
 import com.hcmou.service.SubjectService;
 import java.util.List;
@@ -24,6 +26,44 @@ public class SubjectServiceImpl implements SubjectService{
     public List<Subject> getSubjects() {
         return this.subjRepo.getSubjects();
     }
+    @Override
+    public List<Subject> getListSubjectById(List<Integer> listSubjectID ) {
+        return this.subjRepo.getListSubjectById(listSubjectID);
+    }
+    @Override
+    public List<Subjectteacher> getSubjectTeacherByTeacherID(int TeacherID){
+        return this.subjRepo.getSubjectTeacherByTeacherID(TeacherID);
+    }
+    @Override
+    public List<Studentsubjectteacher> getStudentsubjectteacherBySubjectTeacherID(List<Subjectteacher> listsubjectteacher,
+            int schoolYearID) {
+        
+        return this.subjRepo.getStudentsubjectteacherBySubjectTeacherID(listsubjectteacher, schoolYearID);
+    }
     
+    @Override
+    public List<Integer> getSubjectTeacherId(List<Studentsubjectteacher> studentSubjectTeacher) {
+ 
+        return this.subjRepo.getSubjectTeacherId(studentSubjectTeacher);
+    }
+    @Override
+    public List<Integer> getSubjectIdByListSubjectTeacherId(List<Integer> listSubjectTeacherId) {
+        
+        return this.subjRepo.getSubjectIdByListSubjectTeacherId(listSubjectTeacherId);
+    }
     
+    @Override
+    public List<Studentsubjectteacher> getListStudentsubjectteacher(int subjectteacherID, int selectedSchoolYearId) {
+        return this.subjRepo.getListStudentsubjectteacher(subjectteacherID, selectedSchoolYearId);
+    }
+    
+    @Override
+    public List<Studentsubjectteacher> getListStudentsubjectteacherByStudentID(int studentID, int schoolyearID) {
+        return this.subjRepo.getListStudentsubjectteacherByStudentID(studentID, schoolyearID);
+    }
+    
+    @Override
+    public List<Subjectteacher> getSubjectTeacherByListSubjectTeacherId(List<Studentsubjectteacher> listStudentSubjectTeacher ) {
+        return this.subjRepo.getSubjectTeacherByListSubjectTeacherId(listStudentSubjectTeacher);
+    }
 }

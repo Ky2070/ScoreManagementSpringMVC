@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @ControllerAdvice
 public class IndexController {
+
     
      @Autowired
     private TrainingTypeService trainService;
@@ -38,13 +39,8 @@ public class IndexController {
     }
     @RequestMapping("/")
     public String index(Model model){
-        // Xác định nguồn dữ liệu và xử lý tương ứng
-//        List<Trainingtype> trainingTypes = trainService.getTrainingType();
-//        List<Department> departments = departService.getDepartments();
-//        
-//        // Gửi dữ liệu tới view
-//        model.addAttribute("trainingTypes", trainingTypes);
-//        model.addAttribute("departments", departments);
+      
         return "index";
+
     }
 }

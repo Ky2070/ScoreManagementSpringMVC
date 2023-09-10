@@ -11,6 +11,9 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,9 +54,8 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
     @Size(max = 125)
@@ -79,6 +81,7 @@ public class User implements Serializable {
     private String username;
     @Size(max = 255)
     @Column(name = "Password")
+//    @JsonIgnore
     private String password;
     @Size(max = 500)
     @Column(name = "Image")
@@ -241,5 +244,6 @@ public class User implements Serializable {
     public String toString() {
         return "com.hcmou.pojo.User[ id=" + id + " ]";
     }
+
     
 }

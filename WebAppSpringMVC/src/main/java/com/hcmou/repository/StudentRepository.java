@@ -12,5 +12,5 @@ import java.util.List;
  * @author nguye
  */
 public interface StudentRepository {
-     List<Student> getStudents();
+    List<Student> getStudentByClassId(int classId);
 }

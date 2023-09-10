@@ -3,14 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.hcmou.service;
-
 import com.hcmou.pojo.Score;
+
 import java.util.List;
 
 /**
  *
+
  * @author Kiet
  */
+
 public interface ScoreService {
     List<Score> getScores();
      Score getScoreById(int id);
@@ -18,4 +20,6 @@ public interface ScoreService {
      List<Score> getScoreByStudentFullName(String firstName, String lastName);
      List<Score> getSubjectScoresByStudentCode(String studentCode);
      List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId);
+;
 }
+

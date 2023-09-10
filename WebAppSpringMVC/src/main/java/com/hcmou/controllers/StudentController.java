@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,9 +25,9 @@ public class StudentController {
     private StudentService studService;
 
     @GetMapping("/students")
-    public String list(Model model) {
-        List<Student> students = studService.getStudents();
+    public String list(@RequestParam("classId") int classId, Model model) {
+        List<Student> students = studService.getStudentByClassId(classId);
         model.addAttribute("students", students);
-        return "student";
+        return "student"; // Trả về trang web để hiển thị danh sách sinh viên
     }
 }

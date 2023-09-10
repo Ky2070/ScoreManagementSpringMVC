@@ -1,10 +1,12 @@
 <%-- 
-    Document   : header.jsp
-    Created on : Sep 2, 2023, 3:00:40 PM
-    Author     : nguye
+    Document   : header
+    Created on : Aug 24, 2023, 2:38:58 PM
+    Author     : vhuunghia
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="row">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -57,6 +59,7 @@
 <!-- nav menu -->
 
 
+
 <div class="sticky-top row">
     <nav class="navbar navbar-light bg-light sticky-top navbar-expand-sm">
 
@@ -65,6 +68,7 @@
                 <a class="navbar-brand title_nav header_nav_title" href="/">
                     <img src="https://filethpt.hcm.edu.vn//UploadImages/Config/thptphandangluu/logo%20Truong%20THPT%20PDL%20(3).jpg"
                          alt="" width="70" height="54" class="d-inline-block align-text-top">
+
                     <h1 style="font-size: 1.1vw; color: rgb(19, 3, 80); font-weight: 700; padding-top: 7px; padding-left: 5px;">
                         Trường Đại Học <br>HCM
                     </h1>
@@ -112,12 +116,14 @@
         </div>
 
         <div>
+
             <form class="d-flex" action="/">
                 <input class="form-control me-2" name="keyword" type="text" placeholder="Search">
                 <button class="btn btn-dark" type="submit"><i class="fas fa-search" style="font-size: 20px"></i></button>
             </form>
         </div>
     </nav>
+
 </div>
     
 

@@ -4,13 +4,16 @@
  */
 package com.hcmou.repository;
 
+
 import com.hcmou.pojo.Score;
+import com.hcmou.pojo.Student;
 import java.util.List;
 
 /**
  *
  * @author Kiet
  */
+
 
 public interface ScoreRepository {
     List<Score> getScores();
@@ -19,4 +22,5 @@ public interface ScoreRepository {
     List<Score> getScoreByStudentFullName(String firstName, String lastName);
     List<Score> getSubjectScoresByStudentCode(String studentCode);
     List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId);
+
 }

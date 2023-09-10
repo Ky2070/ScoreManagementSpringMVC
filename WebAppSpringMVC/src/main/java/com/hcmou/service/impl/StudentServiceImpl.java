@@ -17,17 +17,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StudentServiceImpl implements StudentService {
-    
-     @Autowired
+    @Autowired
     private StudentRepository studRepo;
-    
-    /**
-     *
-     * @return
-     */
+
     @Override
-    public List<Student> getStudents() {
-        return this.studRepo.getStudents();
+    public List<Student> getStudentByClassId(int classId) {
+        return this.studRepo.getStudentByClassId(classId);
     }
     
 }

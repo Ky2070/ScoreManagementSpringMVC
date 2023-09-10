@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author nguye
  */
 @Service
-public class DepartmentServiceImpl implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService{
     
     @Autowired
     private DepartmentRepository departRepo;

@@ -42,5 +42,22 @@ public class TeacherRepositoryImp implements TeacherRepository {
             return -1; // Ví dụ: -1 để biểu thị rằng không tìm thấy giáo viên
         }
     }
+    
+    @Override
+    public int getidStudentByEmail(String email) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("SELECT id FROM Student WHERE Email = :email");
+        q.setParameter("email", email);
+
+        List<Integer> results = q.getResultList();
+
+        // Kiểm tra nếu danh sách kết quả không rỗng và chỉ lấy phần tử đầu tiên
+        if (!results.isEmpty()) {
+            return results.get(0);
+        } else {
+            // Hoặc bạn có thể trả về một giá trị mặc định khác nếu không tìm thấy
+            return -1; // Ví dụ: -1 để biểu thị rằng không tìm thấy giáo viên
+        }
+    }
 
 }

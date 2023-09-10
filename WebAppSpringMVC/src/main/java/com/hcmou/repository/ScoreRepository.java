@@ -5,9 +5,11 @@
 package com.hcmou.repository;
 
 
+import com.hcmou.pojo.ListScoreDTO;
 import com.hcmou.pojo.Score;
 import com.hcmou.pojo.Student;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,5 +24,11 @@ public interface ScoreRepository {
     List<Score> getScoreByStudentFullName(String firstName, String lastName);
     List<Score> getSubjectScoresByStudentCode(String studentCode);
     List<Score> getSubjectScoresByStudentCodeAndSchoolYear(String studentCode, int schoolYearId);
-
+    List<Score> getListScoreBySubjectTeacherIdAndSchoolYearId(int subjectTeacherID, int schoolYearId);
+    List<Score> getListScoreBySubjectTeacherIdAndSchoolYearIdAndStudentId(int subjectTeacherID, int schoolYearId, int studentID);
+    boolean saveListScoreByListScoreDTO(ListScoreDTO listScoreDTO);
+    List<Map<String, Object>> convertListScoreByListScoreDTO(ListScoreDTO listScoreDTO);
+    List<Student> convertListScoreToStudent(ListScoreDTO listScoreDTO);
+    
+    
 }

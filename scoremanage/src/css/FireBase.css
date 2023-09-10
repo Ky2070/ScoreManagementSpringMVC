@@ -1,0 +1,50 @@
+.message {
+    padding: 8px;
+    margin: 4px 0;
+    clear: both;
+}
+
+/* Định dạng tin nhắn bên phải */
+.message.right {
+    float: right;
+    background-color: #4CAF50;
+    /* Màu nền bên phải */
+    color: white;
+}
+
+/* Định dạng tin nhắn bên trái */
+.message.left {
+    float: left;
+    background-color: #f2f2f2;
+    /* Màu nền bên trái */
+    color: black;
+}
+
+/* Định dạng cho input và button */
+.input-container {
+    clear: both;
+}
+
+.message-input {
+    width: 80%;
+    padding: 8px;
+    margin: 4px 0;
+}
+
+.send-button {
+    width: 20%;
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #4CAF50;
+    /* Màu nút gửi */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.message-list {
+    list-style: none;
+    /* Loại bỏ dấu chấm trước thẻ li */
+    padding: 0;
+    /* Loại bỏ padding mặc định của danh sách */
+}

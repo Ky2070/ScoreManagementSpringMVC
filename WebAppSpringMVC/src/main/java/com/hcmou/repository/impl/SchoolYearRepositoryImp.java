@@ -5,6 +5,8 @@
 package com.hcmou.repository.impl;
 
 import com.hcmou.pojo.Schoolyear;
+import com.hcmou.pojo.Subjectteacher;
+import com.hcmou.pojo.Typescore;
 import com.hcmou.pojo.User;
 import com.hcmou.repository.SchoolYearRepository;
 import java.util.List;
@@ -37,4 +39,52 @@ public class SchoolYearRepositoryImp implements SchoolYearRepository {
         List<Schoolyear> schoolYears = q.getResultList();
         return schoolYears;
     }
+
+    @Override
+    public Schoolyear getSchoolYearById(int schoolYearId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        Query query = session.createQuery("FROM Schoolyear WHERE id = :schoolYearId");
+        query.setParameter("schoolYearId", schoolYearId);
+
+        List<Schoolyear> schoolYears = query.getResultList();
+
+        if (!schoolYears.isEmpty()) {
+            return schoolYears.get(0);
+        } else {
+            // Trả về null hoặc một giá trị mặc định khác tùy vào yêu cầu của bạn
+            return null;
+        }
+    }
+    
+    @Override
+    public Subjectteacher getSubJectTeacherById(int subJectTeacherId){
+        Session session = this.factory.getObject().getCurrentSession();
+        Query query = session.createQuery("FROM Subjectteacher WHERE id = :subJectTeacherId");
+        query.setParameter("subJectTeacherId", subJectTeacherId);
+
+        List<Subjectteacher> subJectTeacher = query.getResultList();
+
+        if (!subJectTeacher.isEmpty()) {
+            return subJectTeacher.get(0);
+        } else {
+            // Trả về null hoặc một giá trị mặc định khác tùy vào yêu cầu của bạn
+            return null;
+        }
+    }
+    @Override
+    public Typescore getScoreTypeByName(String typeScore){
+        Session session = this.factory.getObject().getCurrentSession();
+        Query query = session.createQuery("FROM Typescore WHERE scoreType = :typeScore");
+        query.setParameter("typeScore", typeScore);
+
+        List<Typescore> typeScoreName = query.getResultList();
+
+        if (!typeScoreName.isEmpty()) {
+            return typeScoreName.get(0);
+        } else {
+            // Trả về null hoặc một giá trị mặc định khác tùy vào yêu cầu của bạn
+            return null;
+        }
+    }
+
 }

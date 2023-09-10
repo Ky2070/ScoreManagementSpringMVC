@@ -13,7 +13,7 @@ import { useSchoolYear } from '../reducers/SchoolYearContext';
 const Header = () => {
 
     const [user, dispatch] = useContext(MyUserContext);
-    const { selectedSchoolYearId ,setSelectedSchoolYearId } = useSchoolYear();
+    const { selectedSchoolYearId, setSelectedSchoolYearId } = useSchoolYear();
     const logout = () => {
         dispatch({
             "type": "logout"
@@ -70,15 +70,31 @@ const Header = () => {
                                 Học kì
                             </Nav.Link>
                         ) : null}
-                        <Nav.Link as={Link} to="/listclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                        {/* <Nav.Link as={Link} to="/listclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                             Lớp phụ trách
-                        </Nav.Link>
+                        </Nav.Link> */}
+
+                        {user !== null && (user.roleID.id === 2 || user.roleID.id === 1) ? (
+                            <Nav.Link as={Link} to="/listclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                                Lớp phụ trách
+                            </Nav.Link>
+                        ) : null}
+                        {user !== null && (user.roleID.id === 3) ? (
+                            <Nav.Link as={Link} to="/listoldclass" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                                Xem môn học
+                            </Nav.Link>
+                        ) : null}
+                        {user !== null && (user.roleID.id === 1 || user.roleID.id === 2 || user.roleID.id === 3 ) ? (
+                            <Nav.Link as={Link} to="/chatfirebase" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                                Chat Online
+                            </Nav.Link>
+                        ) : null}
                         {user === null ? <>
                             <Nav.Link as={Link} to="/login" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
                                 Đăng nhập/Đăng ký
                             </Nav.Link>
                         </> : <>
-                            <img src={user.image} alt={user.name} style={{ width: '50px', height: '50px', borderRadius: '50%', marginLeft: "160px" }} />
+                            <img src={user.image} alt={user.name} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
                             <Nav.Link as={Link} to="/" style={{ fontSize: '1.2rem', fontWeight: 600, color: "#dd3f3f" }}>
                                 Chào {user.name}!
                             </Nav.Link>

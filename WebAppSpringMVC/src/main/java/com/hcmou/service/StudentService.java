@@ -4,10 +4,13 @@
  */
 package com.hcmou.service;
 
+import com.hcmou.pojo.Student;
+import java.util.List;
+
 /**
  *
  * @author nguye
  */
 public interface StudentService {
-    
+    List<Student> getStudentByClassId(int classId);
 }

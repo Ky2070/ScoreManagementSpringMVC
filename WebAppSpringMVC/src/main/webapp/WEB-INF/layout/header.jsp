@@ -8,52 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="row">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="https://jes.edu.vn/wp-content/uploads/2021/06/Cac-truong-thpt-dan-lap-o-ha-noi.jpg"
-                     class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="https://toplist.vn/images/800px/truong-thpt-chuyen-hung-vuong-679866.jpg"
-                     class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://images6.alphacoders.com/113/1136461.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-<!--  -->
 
 
 <!-- nav menu -->
@@ -108,17 +62,8 @@
                         </ul>
                     </li>
                     <li>
-                        <%-- Kiểm tra xem người dùng có đăng nhập hay không bằng cách sử dụng request.isUserInRole('Admin') --%>
-                        <% if (request.isUserInRole("Admin")) {%>
-                        <!-- Nếu người dùng có vai trò admin, hiển thị thông tin chào mừng và nút đăng xuất -->
-                        <p>Xin chào, <%= request.getUserPrincipal().getName()%>!</p>
-                        <form action="<%= request.getContextPath()%>/logout" method="post">
-                            <input type="submit" value="Đăng xuất"/>
-                        </form>
-                        <% } else {%>
-                        <!-- Nếu người dùng không có vai trò admin, hiển thị nút đăng nhập -->
-                        <a class="btn btn-primary" href="<%= request.getContextPath()%>/login">Đăng nhập</a>
-                        <% }%>
+                      
+                        
 
 
                         <a class="btn btn-success" href="<c:url value='/register' />">Đăng ký người dùng</a>

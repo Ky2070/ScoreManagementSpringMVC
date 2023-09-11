@@ -22,6 +22,7 @@ const ScoreTable = () => {
     const { liststudents } = useListStudents();
     const [bonusColumnsCount, setBonusColumnsCount] = useState(0);
     const [searchStudentCode, setSearchStudentCode] = useState('');
+    const [saveStatus, setSaveStatus] = useState(null);
     const [columnNameMapping, setColumnNameMapping] = useState({
 
         'Giữa kỳ': 'midTermScore',
@@ -134,6 +135,27 @@ const ScoreTable = () => {
     }, []);
 
 
+    // const savelistscore = async () => {
+    //     try {
+    //         const dataToSend = {
+    //             listScore: listScore,
+    //             selectedSchoolYearId: selectedSchoolYearId,
+    //             selectedSubjectTeacherId: selectedSubjectTeacherId,
+    //         };
+    //         const headers = {
+    //             'Authorization': cookie.load('token'),
+    //         };
+    //         const response = await Apis.post(endpoints['savelistscore'], dataToSend, { headers });
+
+    //         if (response.status === 200) {
+    //             const responseData = response.data;
+
+    //             console.log(responseData);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    // };
     const savelistscore = async () => {
         try {
             const dataToSend = {
@@ -148,14 +170,17 @@ const ScoreTable = () => {
 
             if (response.status === 200) {
                 const responseData = response.data;
-
+                setSaveStatus('Lưu điểm thành công'); // Thiết lập thông báo thành công
                 console.log(responseData);
+            } else {
+                setSaveStatus('Lưu điểm không thành công'); // Thiết lập thông báo không thành công
+                console.error('Lưu điểm không thành công:', response);
             }
         } catch (error) {
+            setSaveStatus('Lỗi khi lưu điểm'); // Thiết lập thông báo lỗi
             console.error('Error fetching data:', error);
         }
     };
-
 
     const handleAddColumn = () => {
         if (columns < 5) {
@@ -349,7 +374,12 @@ const ScoreTable = () => {
                     padding: "9px 25px",
                     marginLeft: "924px"
                 }}>Lưu</Button>
-
+                {saveStatus && (
+                    <div>
+                        {saveStatus === 'Lưu điểm thành công' && <p style={{ color: 'green', fontSize: "20px" }}>{saveStatus}</p>}
+                        {saveStatus !== 'Lưu điểm thành công' && <p style={{ color: 'red', fontSize: "20px" }}>{saveStatus}</p>}
+                    </div>
+                )}
             </div>
         </div >
     );

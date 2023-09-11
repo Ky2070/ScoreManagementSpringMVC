@@ -9,6 +9,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.hcmou.controllers.ApiUserController;
 import com.hcmou.pojo.Role;
 import com.hcmou.pojo.Student;
+import com.hcmou.pojo.Teacher;
 import com.hcmou.pojo.User;
 import com.hcmou.repository.UserRepository;
 import com.hcmou.service.UserService;
@@ -103,6 +104,7 @@ public class UserServiceImp implements UserService {
             user.setPassword(this.passwordEncoder.encode(params.get("password")));
             user.setBirthdate(foundStudent.getBirthdate());
             user.setActive(foundStudent.getStatus());
+
             user.setRoleID(role);
             if (params.get("avatar") != null) {
                 try {
@@ -131,5 +133,44 @@ public class UserServiceImp implements UserService {
     public boolean isEmailExists(String email) {
 
         return userRepo.findEmail(email);
+    }
+
+    @Override
+    public User addTeacherUser(Map<String, String> params) {
+        String email = params.get("email");
+        // Lấy danh sách kết quả
+        List<Teacher> teachers = this.userRepo.getTeacherByEmail(email);
+        if (!teachers.isEmpty()) {
+            Teacher foundTeacher = teachers.get(0);
+            Role role = new Role();
+            role.setId(2);
+            User user = new User();
+            user.setUsername(email);
+            user.setName(foundTeacher.getTeacherName());
+            user.setGender(foundTeacher.getGender());
+            user.setHometown(foundTeacher.getAddress());
+            user.setBirthdate(foundTeacher.getBirthdate());
+            user.setPhone(foundTeacher.getPhoneNumber());
+            user.setPassword(this.passwordEncoder.encode(params.get("password")));
+            user.setActive("Active");
+            user.setRoleID(role);
+
+            this.userRepo.addTeacherUser(user);
+            return user;
+        } else {
+            // Không tìm thấy Teacher với email tương ứng
+            return null;
+        }
+
+    }
+
+    @Override
+    public boolean isTeacherEmailExists(String email) {
+        return this.userRepo.findTeacherEmail(email);
+    }
+
+    @Override
+    public boolean authAdminUser(String username, String password) {
+        return this.userRepo.authAdminUser(username, password);
     }
 }

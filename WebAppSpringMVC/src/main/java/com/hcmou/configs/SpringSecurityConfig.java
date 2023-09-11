@@ -61,22 +61,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http)
             throws Exception {
 
-        http.formLogin().loginPage("/login")
+        http.formLogin()
+                .loginPage("/login")
                 .usernameParameter("username")
-                .passwordParameter("password");
-
-        http.formLogin().defaultSuccessUrl("/")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/") // Chuyển hướng đến trang /register sau khi đăng nhập thành công
                 .failureUrl("/login?error");
 
-        http.logout().logoutSuccessUrl("/login");
+        http.logout()
+                .logoutSuccessUrl("/login");
+        
+         
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
 
-//        http.authorizeRequests().antMatchers("/").permitAll()
-//                .antMatchers("/**/add")
-//                .access("hasRole('ROLE_ADMIN')");
-//        .antMatchers("/**/pay")
-//                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+        // Tùy chỉnh các quyền truy cập dựa trên URL tại đây
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/forum").hasAuthority("Admin")
+                .antMatchers("/register").hasAuthority("Admin");
+
         http.csrf().disable();
     }
 
@@ -95,4 +99,3 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new SimpleDateFormat("yyyy-MM-dd");
     }
 }
-

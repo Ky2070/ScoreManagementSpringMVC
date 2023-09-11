@@ -5,8 +5,8 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,7 +56,12 @@
                                         <h5 class="card-title">${forum.title} - ${forum.description}</h5>
                                         <p class="card-text">${forum.content}</p>
                                         <a href="#" class="btn btn-primary">Phản hồi</a>
+                                        <c:url value="/deleteForum?forumId=${forum.id}" var="action" />
                                     </div>
+                                    <form method="post" action="${action}" class="delete-form">
+                                        <input type="hidden" name="forumId" value="${forum.id}">
+                                        <button type="button" class="btn btn-danger" onclick="confirmDelete('${forum.id}')">Xóa bài đăng</button>
+                                    </form>
                                 </div>
                             </div>
                         </c:forEach>
@@ -64,19 +69,26 @@
                 </c:choose>
             </div>
         </div>
-       <!-- Nút "Thêm bài đăng" ngoài modal -->
-<!-- Nút "Thêm bài đăng" ngoài modal -->
-<div class="container mt-3">
-    <button type="button" class="btn btn-primary" onclick="navigateToAddPost()">Thêm bài đăng</button>
-</div>
+        <!-- Nút "Thêm bài đăng" ngoài modal -->
+        <div class="container mt-3">
+            <button type="button" class="btn btn-primary" onclick="navigateToAddPost()">Thêm bài đăng</button>
+        </div>
 
-<script>
-    // Hàm để chuyển hướng đến trang thêm bài đăng
-    function navigateToAddPost() {
-        window.location.href = "/WebAppSpringMVC/addForumPage"; // Thay đổi đường dẫn theo trang thêm bài đăng của bạn
-    }
-</script>
-
+        <script>
+            // Hàm để chuyển hướng đến trang thêm bài đăng
+            function navigateToAddPost() {
+                window.location.href = "/WebAppSpringMVC/addForumPage"; // Thay đổi đường dẫn theo trang thêm bài đăng của bạn
+            }
+        </script>
+        <script>
+            function confirmDelete(forumId) {
+                if (window.confirm("Bạn có chắc chắn muốn xóa bài đăng này không?")) {
+                    const form = document.querySelector('.delete-form');
+                    form.id = `delete-form-${forumId}`;
+                    form.submit();
+                }
+            }
+        </script>
     </body>
 
 </html>

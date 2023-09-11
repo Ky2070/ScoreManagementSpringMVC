@@ -89,7 +89,7 @@
                         <ul class="dropdown-menu bg-light" aria-labelledby="departmentDropdownButton">
                             <c:forEach items="${departments}" var="departments">
                                 <li><a class="dropdown-item"  href="major?departmentId=${departments.id}">${departments.departmentName}</a></li>
-                            </c:forEach>
+                                </c:forEach>
                         </ul>
                     </li>
 
@@ -104,27 +104,45 @@
                         <ul class="dropdown-menu bg-light" aria-labelledby="departmentDropdownButton">
                             <c:forEach items="${trainingTypes}" var="trainingTypes">
                                 <li><a class="dropdown-item" href="trainingtype?trainingtypeId=${trainingTypes.id}">${trainingTypes.trainingTypeName}</a></li>
-                            </c:forEach>
+                                </c:forEach>
                         </ul>
                     </li>
+                    <li>
+                        <%-- Kiểm tra xem người dùng có đăng nhập hay không bằng cách sử dụng request.isUserInRole('Admin') --%>
+                        <% if (request.isUserInRole("Admin")) {%>
+                        <!-- Nếu người dùng có vai trò admin, hiển thị thông tin chào mừng và nút đăng xuất -->
+                        <p>Xin chào, <%= request.getUserPrincipal().getName()%>!</p>
+                        <form action="<%= request.getContextPath()%>/logout" method="post">
+                            <input type="submit" value="Đăng xuất"/>
+                        </form>
+                        <% } else {%>
+                        <!-- Nếu người dùng không có vai trò admin, hiển thị nút đăng nhập -->
+                        <a class="btn btn-primary" href="<%= request.getContextPath()%>/login">Đăng nhập</a>
+                        <% }%>
 
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#"><i class="fas fa-globe-europe"></i> Đăng nhập</a>
+
+                        <a class="btn btn-success" href="<c:url value='/register' />">Đăng ký người dùng</a>
+
                     </li>
-                </ul>
+
             </div>
-        </div>
-
-        <div>
-
             <form class="d-flex" action="/">
                 <input class="form-control me-2" name="keyword" type="text" placeholder="Search">
                 <button class="btn btn-dark" type="submit"><i class="fas fa-search" style="font-size: 20px"></i></button>
             </form>
+            </ul>
         </div>
-    </nav>
+</div>
+
+<div>
+
 
 </div>
-    
 
-    
+
+</nav>
+
+</div>
+
+
+

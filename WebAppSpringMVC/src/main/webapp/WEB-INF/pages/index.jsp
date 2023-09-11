@@ -46,11 +46,11 @@
     </head>
     <body>
         <div class="row">
-            <div class="topnav">
-                <a class="nav-link" href="forum"><i class="fas fa-newspaper"></i> Diễn đàn</a>
-
-            </div>
-        </div>   
+    <div class="topnav">
+                <!-- Người dùng đã đăng nhập -->
+                <a class="nav-link" href="<c:url value='/forum' />"><i class="fas fa-newspaper"></i> Diễn đàn</a>
+    </div>
+</div>
         <!-- Content -->
         <div class="container mt-4">
             <!-- Tin tức -->

@@ -70,17 +70,17 @@ public class ForumController {
     }
 
     @PostMapping("/addForum")
-    public String addForum(@ModelAttribute("forum") Forum forum,@RequestParam("subjectTeacherId.id") Integer subjectTeacherId, Model model) {
+    public String addForum(@ModelAttribute("forum") Forum forum, @RequestParam("subjectTeacherId.id") Integer subjectTeacherId, Model model) {
         // Kiểm tra thông tin biểu mẫu và thêm bài đăng vào cơ sở dữ liệu
         if (forum.getTitle() != null && forum.getDescription() != null && forum.getContent() != null) {
             if (forumService.addForum(forum)) {
-               
-                 // Tạo một đối tượng Subjectteacher với id đã chọn từ biểu mẫu
-        Subjectteacher selectedSubjectTeacher = new Subjectteacher();
-        selectedSubjectTeacher.setId(subjectTeacherId);
-        
-        // Gán đối tượng Subjectteacher vào đối tượng Forum
-        forum.setSubjectTeacherId(selectedSubjectTeacher);
+
+                // Tạo một đối tượng Subjectteacher với id đã chọn từ biểu mẫu
+                Subjectteacher selectedSubjectTeacher = new Subjectteacher();
+                selectedSubjectTeacher.setId(subjectTeacherId);
+
+                // Gán đối tượng Subjectteacher vào đối tượng Forum
+                forum.setSubjectTeacherId(selectedSubjectTeacher);
                 model.addAttribute("successMessage", "Bài đăng đã được thêm thành công.");
             } else {
 
@@ -89,6 +89,17 @@ public class ForumController {
         } else {
 
             model.addAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin.");
+        }
+
+        return "redirect:/forum";
+    }
+
+    @PostMapping("/deleteForum")
+    public String deleteForum(@RequestParam("forumId") int forumId, Model model) {
+        if (forumService.deleteForum(forumId)) {
+            model.addAttribute("successMessage", "Bài đăng đã được xóa thành công.");
+        } else {
+            model.addAttribute("errorMessage", "Đã xảy ra lỗi khi xóa bài đăng.");
         }
 
         return "redirect:/forum";

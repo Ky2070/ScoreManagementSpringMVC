@@ -19,4 +19,7 @@ public interface UserService extends UserDetailsService{
     boolean authUser(String username, String password);
     User addUser(Map<String, String> params);
     boolean isEmailExists(String email);
+    User addTeacherUser(Map<String, String> params);
+    boolean isTeacherEmailExists(String email);
+    boolean authAdminUser(String username, String password);
 }

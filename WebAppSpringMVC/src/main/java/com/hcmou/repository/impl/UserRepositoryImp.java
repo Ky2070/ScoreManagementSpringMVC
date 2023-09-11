@@ -4,7 +4,9 @@
  */
 package com.hcmou.repository.impl;
 
+import com.hcmou.pojo.Role;
 import com.hcmou.pojo.Student;
+import com.hcmou.pojo.Teacher;
 import com.hcmou.pojo.User;
 import com.hcmou.repository.UserRepository;
 import java.util.List;
@@ -66,7 +68,7 @@ public class UserRepositoryImp implements UserRepository {
     @Override
     public boolean authUser(String username, String password) {
         User u = this.getUserByUsername(username);
-
+        
         return this.passEncoder.matches(password, u.getPassword());
     }
 
@@ -103,4 +105,55 @@ public class UserRepositoryImp implements UserRepository {
         // Kiểm tra xem danh sách có phần tử nào không
         return students;
     }
+
+    @Override
+    public boolean findTeacherEmail(String email) {
+        Session session = this.factory.getObject().getCurrentSession();
+        Query query = session.createQuery("FROM Teacher WHERE email = :email", Teacher.class);
+        query.setParameter("email", email);
+
+        List<Teacher> teachers = query.getResultList();
+
+        return !teachers.isEmpty();
+
+    }
+
+    @Override
+    public List<Teacher> getTeacherByEmail(String email) {
+        Session session = this.factory.getObject().getCurrentSession();
+    Query query = session.createQuery("FROM Teacher WHERE email = :email", Teacher.class);
+    query.setParameter("email", email);
+
+    List<Teacher> teachers = query.getResultList();
+
+    return teachers;
+    }
+
+    @Override
+    public User addTeacherUser(User user) {
+         Session s = this.factory.getObject().getCurrentSession();
+        s.save(user);
+
+        return user;
+    }
+
+    @Override
+    public boolean authAdminUser(String username, String password) {
+        User user = this.getUserByUsername(username);
+       if (user != null) {
+        // Lấy vai trò của người dùng từ trường roleID của user
+        Role userRole = user.getRoleID();
+        
+        if (userRole != null && userRole.getId() == 1) {
+            // Kiểm tra xem vai trò có roleId = 1 (Admin) không
+            return passEncoder.matches(password, user.getPassword());
+            }
+        else
+        {
+            return false;
+        }
+        }
+    return false;
+    }
 }
+

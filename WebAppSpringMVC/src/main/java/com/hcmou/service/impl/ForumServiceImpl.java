@@ -35,6 +35,12 @@ public class ForumServiceImpl implements ForumService {
         return this.forumRepo.addForum(forum);
     }
 
+    @Override
+    public boolean deleteForum(int forumId) {
+        return this.forumRepo.deleteForum(forumId);
+    }
+
+    
     
     
 }

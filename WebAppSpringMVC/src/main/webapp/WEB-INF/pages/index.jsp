@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion" id="myAccordion">
+<!--            <div class="accordion" id="myAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="section1Header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#section1Content" aria-expanded="true" aria-controls="section1Content">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <!-- Add more accordion sections here -->
+                     Add more accordion sections here 
                 </div>
             </div>
             <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -109,7 +109,7 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Tab 2</a>
                 </li>
-                <!-- Add more tabs here -->
+                 Add more tabs here 
             </ul>
             <div class="tab-content" id="myTabsContent">
                 <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
@@ -118,8 +118,8 @@
                 <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                     Content for Tab 2.
                 </div>
-                <!-- Add more tab content here -->
-            </div>
+                 Add more tab content here 
+            </div>-->
         </div>
         <div class="container">
             <h2>Tin Tức</h2>

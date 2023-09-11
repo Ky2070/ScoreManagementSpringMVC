@@ -23,6 +23,8 @@
                             <h5 class="card-title">${majors.majorName} - ${majors.trainingTypeId}</h5>
                             <p class="card-text">Description or details about the major.</p>
                             <a href="classes?majorId=${majors.id}" class="btn btn-primary">Chi tiết</a>
+                            <button type="button" class="btn btn-danger">Xóa ngành</button>
+                            <button type="button" class="btn btn-primary">Cập nhật</button>
                         </div>
                     </div>
                 </div>

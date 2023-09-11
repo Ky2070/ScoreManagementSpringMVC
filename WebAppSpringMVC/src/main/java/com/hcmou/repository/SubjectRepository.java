@@ -33,5 +33,7 @@ public interface SubjectRepository {
 
     List<Subjectteacher> getSubjectTeacherByListSubjectTeacherId(List<Studentsubjectteacher> listStudentSubjectTeacher);
           
+    boolean addOrUpdateSubject(Subject subject);
     
+    boolean deleteSubject(int subjectId);
 }

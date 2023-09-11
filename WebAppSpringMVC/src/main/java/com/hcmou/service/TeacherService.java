@@ -15,4 +15,7 @@ public interface TeacherService {
     int getIdTeacherByEmail(String email);
 
     int getidStudentByEmail(String email);
+    
+    boolean addOrUpdateTeacher(Teacher teacher);
+    boolean deleteTeacher(int teacherId);
 }

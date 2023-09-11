@@ -14,4 +14,6 @@ import java.util.List;
 public interface MajorService {
      List<Major> getMajorsByDepartmentId(int departmentId);
      List<Major> getMajorsByTrainingTypeId(int trainingtypeId);
+     boolean addOrUpdateMajor(Major major);
+    boolean deleteMajor(int majorId);
 }

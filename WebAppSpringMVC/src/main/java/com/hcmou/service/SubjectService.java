@@ -14,15 +14,26 @@ import java.util.List;
  * @author nguye
  */
 public interface SubjectService {
-     List<Subject> getSubjects();
-     List<Subject> getListSubjectById(List<Integer> listSubjectID );
-     List<Subjectteacher> getSubjectTeacherByTeacherID(int TeacherID);
-     List<Studentsubjectteacher> getStudentsubjectteacherBySubjectTeacherID(List<Subjectteacher> listsubjectteacher, int schoolYearID);
-     List<Integer> getSubjectTeacherId(List<Studentsubjectteacher> studentSubjectTeacher);
-     List<Integer> getSubjectIdByListSubjectTeacherId(List<Integer> listSubjectTeacherId);
-     List<Studentsubjectteacher> getListStudentsubjectteacher(int subjectteacherID, int selectedSchoolYearId);
-     
-     List<Studentsubjectteacher> getListStudentsubjectteacherByStudentID(int studentID, int schoolyearID);
-     
-     List<Subjectteacher> getSubjectTeacherByListSubjectTeacherId(List<Studentsubjectteacher> listStudentSubjectTeacher );
+
+    List<Subject> getSubjects();
+
+    List<Subject> getListSubjectById(List<Integer> listSubjectID);
+
+    List<Subjectteacher> getSubjectTeacherByTeacherID(int TeacherID);
+
+    List<Studentsubjectteacher> getStudentsubjectteacherBySubjectTeacherID(List<Subjectteacher> listsubjectteacher, int schoolYearID);
+
+    List<Integer> getSubjectTeacherId(List<Studentsubjectteacher> studentSubjectTeacher);
+
+    List<Integer> getSubjectIdByListSubjectTeacherId(List<Integer> listSubjectTeacherId);
+
+    List<Studentsubjectteacher> getListStudentsubjectteacher(int subjectteacherID, int selectedSchoolYearId);
+
+    List<Studentsubjectteacher> getListStudentsubjectteacherByStudentID(int studentID, int schoolyearID);
+
+    List<Subjectteacher> getSubjectTeacherByListSubjectTeacherId(List<Studentsubjectteacher> listStudentSubjectTeacher);
+
+    boolean addOrUpdateSubject(Subject subject);
+
+    boolean deleteSubject(int subjectId);
 }

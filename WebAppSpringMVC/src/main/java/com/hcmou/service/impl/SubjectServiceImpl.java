@@ -66,4 +66,14 @@ public class SubjectServiceImpl implements SubjectService{
     public List<Subjectteacher> getSubjectTeacherByListSubjectTeacherId(List<Studentsubjectteacher> listStudentSubjectTeacher ) {
         return this.subjRepo.getSubjectTeacherByListSubjectTeacherId(listStudentSubjectTeacher);
     }
+
+    @Override
+    public boolean addOrUpdateSubject(Subject subject) {
+        return this.subjRepo.addOrUpdateSubject(subject);
+    }
+
+    @Override
+    public boolean deleteSubject(int subjectId) {
+        return this.deleteSubject(subjectId);
+    }
 }

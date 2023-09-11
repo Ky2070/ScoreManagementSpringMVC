@@ -30,5 +30,15 @@ public class ClassServiceImpl implements ClassService {
     public List<Class> getClassesByMajorId(int majorId) {
         return this.classRepo.getClassesByMajorId(majorId);
     }
+
+    @Override
+    public boolean deleteClass(int classId) {
+        return this.classRepo.deleteClass(classId);
+    }
+
+    @Override
+    public boolean addOrUpdateClass(Class classes) {
+        return this.classRepo.addOrUpdateClass(classes);
+    }
     
 }

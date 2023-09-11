@@ -29,4 +29,14 @@ public class MajorServiceImpl implements MajorService {
         return this.majorRepo.getMajorsByTrainingTypeId(trainingtypeId);
     }
 
+    @Override
+    public boolean addOrUpdateMajor(Major major) {
+        return this.majorRepo.addOrUpdateMajor(major);
+    }
+
+    @Override
+    public boolean deleteMajor(int majorId) {
+        return this.majorRepo.deleteMajor(majorId);
+    }
+
 }

@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface StudentService {
     List<Student> getStudentByClassId(int classId);
+     boolean addOrUpdateStudent(Student student);
+    boolean deleteStudent(int studentId);
 }

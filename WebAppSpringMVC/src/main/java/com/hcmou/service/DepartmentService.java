@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface DepartmentService {
     List<Department> getDepartments();
+    boolean addOrUpdateDepartment(Department department);
+    boolean deleteDepartment(int departmentId);
 }

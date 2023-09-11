@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         'email': '',
@@ -87,10 +87,113 @@ const Register = () => {
     //     }
     // };
 
+    // const register = async (e) => {
+    //     e.preventDefault();
+    //     if (!avatar.current.files.length) {
+    //         // Không có tệp nào được chọn
+    //         setErrorMessage("Vui lòng chọn tệp hình ảnh đại diện");
+    //         return;
+    //     }
+
+    //     const file = avatar.current.files[0];
+    //     const reader = new FileReader();
+
+    //     reader.onload = async (e) => {
+    //         const base64String = e.target.result.replace(/^data:image\/[a-z]+;base64,/, '');
+
+    //         try {
+    //             const requestData = {
+    //                 email: formData.email,
+    //                 password: formData.password,
+    //                 avatar: base64String,
+    //             };
+
+    //             const response = await Apis.post(endpoints['register'], requestData, {
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+
+    //             if (response.status === 200) {
+    //                 setErrorMessage(response.data);
+    //                 nav("/login");
+    //                 console.log(response.data);
+    //             } else {
+    //                 console.error(response.data);
+    //                 console.log(response.status);
+    //             }
+    //         } catch (error) {
+    //             if (error.response && error.response.status === 400) {
+    //                 // Đăng ký thất bại với lỗi 400
+    //                 setErrorMessage(error.response.data);
+    //             } else {
+    //                 console.error('Error:', error);
+    //             }
+    //         }
+    //     };
+
+    //     reader.readAsDataURL(file);
+    // };
+
+    // const register = async (e) => {
+    //     e.preventDefault();
+    //     if (!avatar.current.files.length) {
+    //         // Không có tệp nào được chọn
+    //         setErrorMessage("Vui lòng chọn tệp hình ảnh đại diện");
+    //         return;
+    //     }
+
+    //     const file = avatar.current.files[0];
+    //     const reader = new FileReader();
+
+    //     reader.onload = async (e) => {
+    //         const base64String = e.target.result.replace(/^data:image\/[a-z]+;base64,/, '');
+
+    //         try {
+    //             // Cắt bỏ khoảng trống ở đầu và cuối của email, password và confirmPassword
+    //             const trimmedEmail = formData.email.trim();
+    //             const trimmedPassword = formData.password.trim();
+    //             const trimmedConfirmPassword = formData.confirmPassword.trim();
+
+    //             const requestData = {
+    //                 email: trimmedEmail, // Sử dụng giá trị đã cắt bỏ khoảng trống
+    //                 password: trimmedPassword, // Sử dụng giá trị đã cắt bỏ khoảng trống
+    //                 avatar: base64String,
+    //             };
+
+    //             const response = await Apis.post(endpoints['register'], requestData, {
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+
+    //             if (response.status === 200) {
+    //                 setErrorMessage(response.data);
+    //                 nav("/login");
+    //                 console.log(response.data);
+    //             } else {
+    //                 console.error(response.data);
+    //                 console.log(response.status);
+    //             }
+    //         } catch (error) {
+    //             if (error.response && error.response.status === 400) {
+    //                 // Đăng ký thất bại với lỗi 400
+    //                 setErrorMessage(error.response.data);
+    //             } else {
+    //                 console.error('Error:', error);
+    //             }
+    //         }
+    //     };
+
+    //     reader.readAsDataURL(file);
+    // };
+
     const register = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Hiển thị dấu hiệu xử lý
+
         if (!avatar.current.files.length) {
-            // Không có tệp nào được chọn
+            setIsLoading(false); // Ẩn dấu hiệu xử lý nếu không có tệp nào được chọn
             setErrorMessage("Vui lòng chọn tệp hình ảnh đại diện");
             return;
         }
@@ -102,9 +205,14 @@ const Register = () => {
             const base64String = e.target.result.replace(/^data:image\/[a-z]+;base64,/, '');
 
             try {
+                // Cắt bỏ khoảng trống ở đầu và cuối của email, password và confirmPassword
+                const trimmedEmail = formData.email.trim();
+                const trimmedPassword = formData.password.trim();
+                const trimmedConfirmPassword = formData.confirmPassword.trim();
+
                 const requestData = {
-                    email: formData.email,
-                    password: formData.password,
+                    email: trimmedEmail, // Sử dụng giá trị đã cắt bỏ khoảng trống
+                    password: trimmedPassword, // Sử dụng giá trị đã cắt bỏ khoảng trống
                     avatar: base64String,
                 };
 
@@ -129,12 +237,13 @@ const Register = () => {
                 } else {
                     console.error('Error:', error);
                 }
+            } finally {
+                setIsLoading(false); // Ẩn dấu hiệu xử lý sau khi hoàn thành xử lý
             }
         };
 
         reader.readAsDataURL(file);
     };
-
 
     const handleInputChange = (e) => {
         const { name, value, files } = e.target;
@@ -255,12 +364,19 @@ const Register = () => {
                                             />
                                         </Form.Group>
 
-                                        <Form.Group className="mb-3">
+                                        {/* <Form.Group className="mb-3">
                                             <Button variant="info" type="submit">
                                                 Đăng ký
                                             </Button>
+                                        </Form.Group> */}
+                                        <Form.Group className="mb-3">
+                                            <Button variant="info" type="submit" disabled={isLoading}>
+                                                {isLoading ? 'Đang xử lý...' : 'Đăng ký'}
+                                            </Button>
                                         </Form.Group>
                                     </Form>
+                                    {isLoading && <p>Đang xử lý...</p>}
+                                    {/* {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} */}
                                 </div>
                             </div>
                         </Card.Body>

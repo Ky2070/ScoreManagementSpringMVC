@@ -34,19 +34,56 @@ const Login = () => {
     //     console.log(formData);
     // };
 
+    // const handleLogin = async (event) => {
+    //     event.preventDefault();
+    //     console.log(formData);
+
+    //     try {
+    //         const requestBody = {
+    //             username: formData.username,
+    //             password: formData.password,
+    //             roleID: formData.roleID,
+    //         };
+    //         const response = await Apis.post(endpoints['login'], requestBody);
+    //         cookie.save("token",response.data);
+    //         let {data} = await  authApi().get(endpoints["current-user"]);
+    //         cookie.save("user", data);
+    //         dispatch({
+    //             "type": "login",
+    //             "payload": data
+    //         });
+    //         if (response.status == 200) {
+    //             console.log(response.data); // Log phản hồi từ máy chủ
+    //         }
+
+
+    //     } catch (error) {
+    //         if (error.response.status === 401) {
+    //             const errorData = error.response.data;
+
+    //             setError(errorData);
+
+    //         } else {
+    //             console.error('Lỗi không xác định:', error);
+    //         }
+    //     }
+    // };
     const handleLogin = async (event) => {
         event.preventDefault();
         console.log(formData);
-
+    
         try {
+            // Cắt bỏ khoảng trống ở đầu và cuối của username
+            const trimmedUsername = formData.username.trim();
+    
             const requestBody = {
-                username: formData.username,
+                username: trimmedUsername, // Sử dụng giá trị đã cắt bỏ khoảng trống
                 password: formData.password,
                 roleID: formData.roleID,
             };
             const response = await Apis.post(endpoints['login'], requestBody);
-            cookie.save("token",response.data);
-            let {data} = await  authApi().get(endpoints["current-user"]);
+            cookie.save("token", response.data);
+            let { data } = await authApi().get(endpoints["current-user"]);
             cookie.save("user", data);
             dispatch({
                 "type": "login",
@@ -55,14 +92,10 @@ const Login = () => {
             if (response.status == 200) {
                 console.log(response.data); // Log phản hồi từ máy chủ
             }
-
-
         } catch (error) {
             if (error.response.status === 401) {
                 const errorData = error.response.data;
-
                 setError(errorData);
-
             } else {
                 console.error('Lỗi không xác định:', error);
             }

@@ -125,12 +125,12 @@ const ListScoreOfStudent = () => {
             <div className='content'>
                 <Table striped bordered hover>
                     <thead>
-                        <tr>
+                        {/* <tr>
                             <td colSpan={columns + 4} style={{ fontWeight: 'bold', fontSize: '35px' }}>Lớp: 12A - Môn học: Toán học</td>
                         </tr>
                         <tr>
                             <td colSpan={columns + 5} style={{ fontWeight: 'bold', fontSize: '35px' }}>HK1: 2023-2024</td>
-                        </tr>
+                        </tr> */}
 
                         <tr>
                             <th>STT</th>

@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -39,20 +40,52 @@ public class MajorRepositoryImpl implements MajorRepository {
 
     @Override
     public List<Major> getMajorsByTrainingTypeId(int trainingtypeId) {
-         // Lấy phiên hiện tại từ LocalSessionFactoryBean
+        // Lấy phiên hiện tại từ LocalSessionFactoryBean
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Major> criteriaQuery = criteriaBuilder.createQuery(Major.class);
-        
+
         Root<Major> root = criteriaQuery.from(Major.class);
-        
+
         // Thêm điều kiện để lọc các Major theo trainingtypeId
         criteriaQuery.where(criteriaBuilder.equal(root.get("trainingTypeId"), trainingtypeId));
-        
+
         criteriaQuery.select(root);
-        
+
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean addOrUpdateMajor(Major major) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (major.getId() == null) {
+                s.save(major);
+            } else {
+                s.update(major);
+            }
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteMajor(int majorId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Major majorToDelete = s.get(Major.class, majorId);
+        if (majorToDelete != null) {
+            try {
+                s.delete(majorToDelete);
+                return true; // Trả về true nếu xóa thành công
+            } catch (HibernateException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false; // Trả về false nếu không tìm thấy Major để xóa hoặc có lỗi xảy ra
     }
 
 }

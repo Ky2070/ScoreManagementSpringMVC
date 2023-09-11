@@ -30,4 +30,14 @@ public class TeacherServiceImp implements TeacherService{
     public int getidStudentByEmail(String email){
         return this.teacherRepository.getidStudentByEmail(email);
     }
+
+    @Override
+    public boolean addOrUpdateTeacher(Teacher teacher) {
+        return this.teacherRepository.addOrUpdateTeacher(teacher);
+    }
+
+    @Override
+    public boolean deleteTeacher(int teacherId) {
+        return this.teacherRepository.deleteTeacher(teacherId);
+    }
 }

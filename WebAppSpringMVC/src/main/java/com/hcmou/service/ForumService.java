@@ -18,4 +18,6 @@ public interface ForumService {
     List<Forum> getForumBySubjectTeacher(int subjectTeacherId);
 
     boolean addForum(Forum forum);
+    
+     boolean deleteForum(int forumId);
 }

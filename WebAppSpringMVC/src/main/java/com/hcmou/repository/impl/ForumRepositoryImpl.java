@@ -64,4 +64,20 @@ public class ForumRepositoryImpl implements ForumRepository {
         }
     }
 
+    @Override
+    public boolean deleteForum(int forumId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            Forum forumToDelete = s.get(Forum.class, forumId);
+            if (forumToDelete != null) {
+                s.delete(forumToDelete);
+                return true;
+            } else {
+                return false; // Không tìm thấy bài đăng cần xóa
+            }
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

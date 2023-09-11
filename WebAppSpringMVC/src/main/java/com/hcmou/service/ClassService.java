@@ -13,4 +13,6 @@ import java.util.List;
 public interface ClassService {
     List<Class> getClasses();
     List<Class> getClassesByMajorId(int majorId);
+    boolean deleteClass(int classId);
+    boolean addOrUpdateClass(Class classes);
 }

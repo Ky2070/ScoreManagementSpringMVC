@@ -4,7 +4,9 @@
     Author     : nguye
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,11 +15,6 @@
     </head>
     <body>
 
-
-        <!--ô đăng nhập -->
-        <!--{% if current_user.is_authenticated %}
-        
-            {% else %}-->
         <div class="login_ui">
             <section class="background_login_form" id="bg_login_form">
             </section>
@@ -34,21 +31,24 @@
                                             </div>
 
                                             <h6 class="h5 mb-0">Welcome back!</h6>
-                                            <p class="text-muted mt-2 mb-5">Enter your email address and password to access
-                                                admin
-                                                panel.</p>
+                                            <p class="text-muted mt-2 mb-5">Enter your username and password to access the admin panel.</p>
 
-                                            <form method="post" enctype="multipart/form-data" action="/">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">User name</label>
-                                                    <input type="text" class="form-control" name="username_login" id="exampleInputEmail1">
+
+                                            <c:url value="/login" var="action" />
+                                            <form method="post" action="${action}">
+                                                <div class="form-floating mb-3 mt-3">
+                                                    <input type="text" class="form-control" id="username" placeholder="Nhập username..." name="username">
+                                                    <label for="username">Tên đăng nhập</label>
                                                 </div>
-                                                <div class="form-group mb-5">
-                                                    <label for="exampleInputPassword1">Password</label>
-                                                    <input type="password" class="form-control" name="password_login"  id="exampleInputPassword1">
+
+                                                <div class="form-floating mt-3 mb-3">
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập mật khẩu..." name="password">
+                                                    <label for="pwd">Mật khẩu</label>
                                                 </div>
-                                                <button type="submit" class="btn btn-theme">Login</button>
-                                                <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
+
+                                                <div class="form-floating mt-3 mb-3">
+                                                    <input type="submit" value="Đăng nhập" class="btn btn-danger" />
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -58,22 +58,16 @@
                                             <div class="overlay rounded-right"></div>
                                             <div class="account-testimonial">
                                                 <h4 class="text-dark mb-4">Spring Security</h4>
-                                                <p class="lead text-dark">"Best investment i made for a long time. Can only
-                                                    recommend it for other users."</p>
+                                                <p class="lead text-dark">"Best investment I made for a long time. Can only recommend it for other users."</p>
                                                 <p>- Admin User</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <!-- end card-body -->
                         </div>
                         <!-- end card -->
-
-
-                        <!-- end row -->
-
                     </div>
                     <!-- end col -->
                 </div>
@@ -81,43 +75,28 @@
             </div>
         </div>
 
-
-
-        <!--    {% if err_msg %}
-                    <div class="alert box_alert" id="box_alert_fail_login">
-                        <span class="closebtn">&times;</span>
-                        <strong>Cảnh báo</strong> Đăng nhập thất bại do : {{ err_msg }}
-                    </div>
-            {% endif %}
-        
-         {% endif %}-->
-
-        <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-
         <script>
-var close = document.getElementsByClassName("closebtn");
-var i;
+            var close = document.getElementsByClassName("closebtn");
+            var i;
 
-for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.opacity = "0";
-        setTimeout(function () {
-            div.style.display = "none";
-        }, 600);
-    }
-}
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.opacity = "0";
+                    setTimeout(function () {
+                        div.style.display = "none";
+                    }, 600);
+                }
+            }
 
+            setTimeout(() => {
+                var b = document.getElementById('box_alert_fail_login');
 
-setTimeout(() => {
-    var b = document.getElementById('box_alert_fail_login');
-
-    if (b != null) {
-        console.log(b)
-        b.style.display = 'none'
-    }
-
-}, 3000)
+                if (b != null) {
+                    console.log(b)
+                    b.style.display = 'none'
+                }
+            }, 3000)
         </script>
     </body>
 </html>

@@ -14,4 +14,6 @@ import java.util.List;
 public interface TeacherRepository {
     int getidTeacherByEmail(String email);
     int getidStudentByEmail(String email);
+    boolean addOrUpdateTeacher(Teacher teacher);
+    boolean deleteTeacher(int teacherId);
 }

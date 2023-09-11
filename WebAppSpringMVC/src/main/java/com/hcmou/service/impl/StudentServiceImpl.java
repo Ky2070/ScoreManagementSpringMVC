@@ -24,5 +24,15 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentByClassId(int classId) {
         return this.studRepo.getStudentByClassId(classId);
     }
+
+    @Override
+    public boolean addOrUpdateStudent(Student student) {
+        return this.studRepo.addOrUpdateStudent(student);
+    }
+
+    @Override
+    public boolean deleteStudent(int studentId) {
+        return this.studRepo.deleteStudent(studentId);
+    }
     
 }

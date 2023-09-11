@@ -19,6 +19,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -217,6 +218,38 @@ public class SubjectRepositoryImpl implements SubjectRepository {
 
         List<Subjectteacher> resultList = q.getResultList();
         return resultList;
+    }
+
+    @Override
+    public boolean addOrUpdateSubject(Subject subject) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (subject.getId() == null) {
+                s.save(subject);
+            } else {
+                s.update(subject);
+            }
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteSubject(int subjectId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Subject subjectToDelete = s.get(Subject.class, subjectId);
+        if (subjectToDelete != null) {
+            try {
+                s.delete(subjectToDelete);
+                return true; // Trả về true nếu xóa thành công
+            } catch (HibernateException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false; // Trả về false nếu không tìm thấy Môn học để xóa hoặc có lỗi xảy ra 
     }
 
 }
